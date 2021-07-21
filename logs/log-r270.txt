@@ -1,0 +1,194 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 23:48:08.606263
+----------------------------------------
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+32 32 31 False
+   T<32:HOLDQ		EQUALS	DAPTREG1>[4f030851]
+   T<31:HOLDQ		EQUAS	DAPTREG1>[4f030851]
+29 29 8 False
+   T<29:# DEFINED BY EQUALS>[b50fe439]
+   F<0:>[]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+12 12 8 False
+   T<12:##>[5d1714ec]
+   F<0:>[]
+46 46 45 False
+   T<46:# ERASABLE INITIALIZATION REQUIRED ->[3be7b0a3]
+   F<45:# ERASABLE INITIALIZATION REQUIRED -[3be7b0a3>[]
+32 32 26 False
+   T<32:PHSCHNG2	LXCH	TEMPBBCN>[11995089]
+   T<26:PHSCHNG2TEMPBBCN>[11995089]
+84 84 82 False
+   T<84:# IN OCTAL DISPLAY AND LOAD (OCT OR DEC) VERBS, EXCLUDE USE OF VERBS WHOSE>[87099dbf]
+   F<82:# IN OCTAL DISPLAY AND LOAD (OCT OR DEC) VERBS, EXCLUDE USE OF VERBS WHOSE[87099db>[]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>            8 	           8
+Error bytes.....>          263	         263
+Error percent...>         0.01 %	        0.01 %
+Error ppm.......>       118.62 ppm	      118.62 ppm
+----------------------------------------
+runend: 2021-07-22 00:03:24.941384
+runtime: 0:15:16.335121
+========================================================================
+Run # 1
+runbeg: 2021-07-22 00:03:24.941459
+----------------------------------------
+29 29 8 False
+   T<29:## Assembler:	yaYUL>[deccba69]
+   F<0:>[]
+39 39 28 False
+   T<39:RCNORM		EQUALS	34D		# I(2)TMP>[a1032000]
+   F<28:RCNORM		EQUALS	34D		# I(2)TM>[]
+63 63 30 False
+   T<63:# 4. BOTH VEHICLE STATE VECTORS UPDATED BY CONIC EQS.>[367946f7]
+   T<30:# 4. BOTHICLE STATE.>[367946f7]
+68 68 60 False
+   T<68:ORDERBIT	=	BIT6			#	ORDER MINIMUM MODE	ORDER STANDARD MODE>[f3eacff1]
+   T<60:ORDERBIT	=	BIT6			MINIMUM MODE	ORDER STANDARD MODE>[f3eacff1]
+49 49 15 False
+   T<49:#	TTFINCR COMPUTATIONS ARE AS FOLLOWS:->[911ebfd2]
+   F<15:#	TTFINC1ebfd2]>[]
+46 46 40 False
+   T<46:		TC	FIXDELAY	# NO - WAIT 15 SECONDS>[05b052ff]
+   T<40:		TC	FIXDELAY	# NOT 15 SECONDS>[05b052ff]
+17 17 8 False
+   T<17:		VLOAD>[aa7f27bb]
+   F<0:>[]
+22 22 17 False
+   T<22:		MASK	THREE>[f2853019]
+   F<17:		MASK	TH2853019]>[]
+28 28 8 False
+   T<28:NOTBIT12	OCT	73777>[aa8413e3]
+   F<0:>[]
+50 50 49 False
+   T<50:		OCT	02727			# FORWARD/LATERAL VELOCITY>[2f25cccd]
+   T<49:		OCT	0227			# FORWARD/LATERAL VELOCITY>[2f25cccd]
+71 71 65 False
+   T<71:## Mod history:	2009-05-19 RSB	Adapted from the corresponding>[3af5b958]
+   F<65:## Mod history:	2009-05-19 RSB	Adapted from the correspondinb958]>[]
+24 24 22 False
+   T<24:		DXCH	L*WCR*T>[4cb34458]
+   F<22:		DXCH	L*WCR*T[4cb3445>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           12 	          20
+Error bytes.....>          506	         769
+Error percent...>         0.02 %	        0.02 %
+Error ppm.......>       228.22 ppm	      173.42 ppm
+----------------------------------------
+runend: 2021-07-22 00:18:42.271899
+runtime: 0:15:17.330440
+========================================================================
+Run # 2
+runbeg: 2021-07-22 00:18:42.271981
+----------------------------------------
+63 63 50 False
+   T<63:# SKEEP7 HOLDS LOWEST OF TWO ADDRESSES BEING CHECKED.>[a3612cfd]
+   T<50:# SKEEP7 HOLDS LOWEST OES BEING CHECKED.>[a3612cfd]
+55 55 37 False
+   T<55:COREINC		DEC	12		# 12 REGISTERS PER CORE SET.>[f73512ce]
+   T<37:COREINC	STERS PER CORE SET.>[f73512ce]
+52 52 44 False
+   T<52:		MASK	ACC4OR2X	# 2 OR 4 JET X-TRANSLATION>[236e9fec]
+   T<44:		MASK	A# 2 OR 4 JET X-TRANSLATION>[236e9fec]
+19 19 15 False
+   T<19:		CA	CDUY>[c25bff0c]
+   F<15:		CA	CDUY[c25bf>[]
+21 21 18 False
+   T<21:		TC	DOTSUB>[ca0a3257]
+   F<18:		TC	DOTSUB[ca0a32>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+124 124 120 False
+   T<124:# ****************************************************************************************************************>[69cba30f]
+   T<120:# ************************************************************************************************************>[69cba30f]
+22 22 19 False
+   T<22:		BZF	VELCHK>[aa1ce56d]
+   F<19:		BZF	VELCHK[aa1ce5>[]
+16 16 10 False
+   T<16:		TS	L>[1fe02cf4]
+   F<10:		TS	L[14]>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+57 57 51 False
+   T<57:		BOFF	SR2R		# NEED HPER AT (-29)M FOR DISPLAY.>[669a9590]
+   T<51:		BOFF	SR2R		# NEED HPER AT (-29)M FORAY.>[669a9590]
+60 60 58 False
+   T<60:			DELCOMP		# COMPUTE THE ROTATION ABOUT SCAXIS TO>[36024202]
+   F<58:			DELCOMP		# COMPUTE THE ROTATION ABOUT SCAXIS TO[3602420>[]
+60 60 57 False
+   T<60:##		Apollo Guidance Computer (AGC), for Apollo 11.>[5d66e84a]
+   T<57:##		ApolGuidance Computer (AGC), for Apollo 11.>[5d66e84a]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+72 72 71 False
+   T<72:GLAMPTST	TC	LAMPTEST		# TURN OFF UNLESS LAMP TEST IN PROGRESS.>[4010e43c]
+   T<71:GLAMPTST	TC	LAMPTEST		# TURN OFF UNLESS LAMP TET IN PROGRESS.>[4010e43c]
+73 73 68 False
+   T<73:# THE TRACKER FAIL LAMP (DSPTAB+11D BIT 8).  CONTROL RETURNS TO>[2e8539a0]
+   F<68:# THE TRACKER FAIL LAMP (DSPTAB+11D BIT 8).  CONTROL RETURNS TO[2e85>[]
+60 60 55 False
+   T<60:#RPER		=	14D		PERIGEE RADIUS  M	E: (-29)  M: (-27)>[d3bd7cee]
+   T<55:#RPER		=	PERIGEE RADIUS  M	E: (-29)  M: (-27)>[d3bd7cee]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           17 	          37
+Error bytes.....>          784	        1553
+Error percent...>         0.04 %	        0.02 %
+Error ppm.......>       353.61 ppm	      233.49 ppm
+----------------------------------------
+runend: 2021-07-22 00:34:01.903393
+runtime: 0:15:19.631412
+========================================================================
+Run # 3
+runbeg: 2021-07-22 00:34:01.903477
+----------------------------------------
+44 44 24 False
+   T<44:		CA	COEFF 	+2	# COEFF +2 = A OR B>[e865db8d]
+   F<24:		CA	COEFF 	+2	# COEFF +>[]
+36 36 8 False
+   T<36:		VLOAD	PDVL		#				PL AT 6>[f49764e9]
+   F<0:>[]
+21 21 8 False
+   T<21:#	   OUTPUT>[b132d822]
+   F<0:>[]
+74 74 53 False
+   T<74:#	SIGNAL.  IF OUT OF TIME, PROGRAM ALARM 00503 IS REQUESTED, THE>[4da26c85]
+   T<53:#	SIGNAL.  IF OUT OF TIME, PROGRUESTED, THE>[4da26c85]
+75 75 68 False
+   T<75:# PROGRAM NAME_  LPS20.1 VECTOR EXTRAPOLATION AND LOS COMPUTATION>[65cc6daf]
+   T<68:# PROGRA  LPS20.1 VECTOR EXTRAPOLATION AND LOS COMPUTATION>[65cc6daf]
+11 11 8 False
+   T<11:#>[70659eff]
+   F<0:>[]
+26 26 23 False
+   T<26:TURNON		CA	BIT15>[07a933b5]
+   T<23:TURNON		BIT15>[07a933b5]
+27 27 15 False
+   T<27:NORMT4		CAF	SEVEN>[59df1e3e]
+   F<15:NORMT4		CAF	SEV>[]
+20 20 8 False
+   T<20:		TC	ALARM>[75554587]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>            9 	          46
+Error bytes.....>          334	        1887
+Error percent...>         0.02 %	        0.02 %
+Error ppm.......>       150.65 ppm	      212.78 ppm
+----------------------------------------
+runend: 2021-07-22 00:49:17.981832
+runtime: 0:15:16.078355

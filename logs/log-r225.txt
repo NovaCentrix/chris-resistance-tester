@@ -1,0 +1,212 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 22:40:47.480892
+----------------------------------------
+30 30 15 False
+   T<30:REFLASHR	TS	PLAYTEM1>[b13fa50e]
+   F<15:REFLASHR	TS	PLA>[]
+55 55 29 False
+   T<55:##		2009-05-17 RSB	Extended to (blank) p. 89.>[578dc752]
+   T<29:##		2009blank) p89.>[578dc752]
+64 64 58 False
+   T<64:		CS	IMODES30	# SEE IF IMU OPERATING AND ALARM IF NOT.>[4f5626dc]
+   T<58:		CS	IMODES30	# SEE IF IMATING AND ALARM IF NOT.>[4f5626dc]
+64 64 59 False
+   T<64:		CA	10000		# PINBALL (FIX MEM DISP) PREVENTS DCA HERE>[58edbebd]
+   T<59:		CA	10000		# PINBALL (FIX MEM DIREVENTS DCA HERE>[58edbebd]
+14 14 8 False
+   T<14:			4>[a3ebe4e5]
+   F<0:>[]
+71 71 30 False
+   T<71:#	LOC+2	SP	PRECROOT	 PREC RQD OF ROOT (AS FRACT OF 1ST GUESS)>[a739eb52]
+   T<30:#	LOC+2	F 1ST GUESS)>[a739eb52]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+68 68 50 False
+   T<68:#	PROCEEDING (EXIT ROUTINE AND RETURN TO AUTO MODE IN P20)>[16f3c7e4]
+   F<50:#	PROCEEDING (EXIT ROUTINE AND RETURN TO AUTO MODE>[]
+66 66 60 False
+   T<66:GOTOV56		EXTEND			# P20 TERMINATES BY GOTOV56 INSTEAD OF>[19215dbc]
+   T<60:GOTOV56		EXTENP20 TERMINATES BY GOTOV56 INSTEAD OF>[19215dbc]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+22 22 8 False
+   T<22:		STORE	6D,2>[a5eb8674]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+120 120 113 False
+   T<120:# THERE ARE TWO FORMS OF RESTART TABLES FOR EACH GROUP.  THEY ARE KNOWN AS THE EVEN RESTART TABLES AND THE ODD>[09cae723]
+   T<113:# THERE ARE TWO FORMSTART TABLES FOR EACH GROUP.  THEY ARE KNOWN AS THE EVEN RESTART TABLES AND THE ODD>[09cae723]
+11 11 8 False
+   T<11:#>[70659eff]
+   F<0:>[]
+39 39 29 False
+   T<39:			INBOUND		# USE ALTERNATE Z>[130367a7]
+   T<29:			INBOUALTERNATE Z>[130367a7]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           15 	          15
+Error bytes.....>          662	         662
+Error percent...>         0.03 %	        0.03 %
+Error ppm.......>       298.59 ppm	      298.59 ppm
+----------------------------------------
+runend: 2021-07-21 22:56:05.761716
+runtime: 0:15:18.280824
+========================================================================
+Run # 1
+runbeg: 2021-07-21 22:56:05.761803
+----------------------------------------
+26 26 8 False
+   T<26:#			(MAX 163.83)>[29626b2c]
+   F<0:>[]
+49 49 8 False
+   T<49:		CCS	CYR		# SEE IF A ROUND IS DESIRED.>[2195dd8d]
+   F<0:>[]
+23 23 11 False
+   T<23:		CA	RUPTREG3>[3777b051]
+   F<11:		CA	RUP51]>[]
+68 68 63 False
+   T<68:#		- TRUNNION = LOS . (SIN(T)SIN(S), COS(T), SIN(T)COS(S))>[4fa5f245]
+   F<63:#		- TRUNNION = LOS . (SIN(T)SIN(S), COS(T), SIN(T)COS(S))[4fa5>[]
+24 24 20 False
+   T<24:		STORE	W +16D>[c677b29d]
+   T<20:		STORE	6D>[c677b29d]
+23 23 21 False
+   T<23:ALMXIT		LXC,1>[755af0fa]
+   F<21:ALMXIT		LXC,1[755af0f>[]
+64 64 33 False
+   T<64:		SLOAD	BHIZ		# IF SP(MPAC) EQ 0, CONTINUE AT INITVELC>[787ef550]
+   T<33:		SLOAD	BHIZ		# NITVELC>[787ef550]
+44 44 38 False
+   T<44:#	1)	A CALL TO LOCSAM MUST BE MADE>[32773f50]
+   T<38:#	1)	A CALL TO  MUST BE MADE>[32773f50]
+23 23 22 False
+   T<23:		TC	ENDOFJOB>[1363eb6b]
+   F<22:		TC	ENDOFJOB[1363eb6b>[]
+20 20 13 False
+   T<20:		CA	EDOTQ>[ec453470]
+   F<13:		CA	EDOTQ70]>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           10 	          25
+Error bytes.....>          364	        1026
+Error percent...>         0.02 %	        0.02 %
+Error ppm.......>       164.18 ppm	      231.38 ppm
+----------------------------------------
+runend: 2021-07-21 23:11:21.543797
+runtime: 0:15:15.781994
+========================================================================
+Run # 2
+runbeg: 2021-07-21 23:11:21.545145
+----------------------------------------
+64 64 63 False
+   T<64:		STORE	VGVECT		# VG = (DRDOT)R + (DYDOT)L + (DZDOT)Z.>[17ea08b0]
+   T<63:		STORE	VGVECT		# VG = (DDOT)R + (DYDOT)L + (DZDOT)Z.>[17ea08b0]
+45 45 40 False
+   T<45:		2DEC	-.8719885748 B-1	# STAR 31	Y>[18dc5f5a]
+   T<40:		2DEC	-.87198 B-1	# STAR 31	Y>[18dc5f5a]
+49 49 25 False
+   T<49:#	3.	SCHEDULE R62DISP WITH PRIORITY 10.>[0a7f2b97]
+   T<25:#	3.	SCHITY 10.>[0a7f2b97]
+65 65 62 False
+   T<65:FLAP		=	142D			#	APS CONTINUED ABORT	APS ABORT IS NOT A>[b712c2f8]
+   T<62:FLAP		=	142D			#	APS CONTINUED ABORT	APS ABORT IST A>[b712c2f8]
+26 26 18 False
+   T<26:		TS	DELAYLOC +2>[88505794]
+   T<18:		TS	DEL>[88505794]
+16 16 15 False
+   T<16:			18D>[a5526b45]
+   F<15:			18D[a526b45]>[]
+49 49 35 False
+   T<49:# 4.0 CALLING SEQUENCES AND SAMPLE CODE>[85f0d9d8]
+   F<35:# 4.0 CALLING SEQUENCES AND SAMPLE >[]
+16 16 11 False
+   T<16:		BANK>[546c1fc8]
+   F<11:		BANK[546c>[]
+29 29 25 False
+   T<29:IFLAGC		CLEAR	SETGO>[0b282393]
+   F<25:IFLAGC		CLEAR	SETGO[0b282>[]
+28 28 8 False
+   T<28:# CALLING SEQUENCE>[e0418108]
+   F<0:>[]
+17 17 8 False
+   T<17:			RPSV>[3ccdbadb]
+   F<0:>[]
+21 21 8 False
+   T<21:		TC	CHANG1>[a7ee1924]
+   F<0:>[]
+54 54 47 False
+   T<54:			RDOTMSAV	# CONVERT RDOT UNITS AND SCALING>[f14fb2af]
+   T<47:			RDOTMONVERT RDOT UNITS AND SCALING>[f14fb2af]
+20 20 8 False
+   T<20:		VXV	UNIT>[2ce21f16]
+   F<0:>[]
+25 25 16 False
+   T<25:		COUNT*	$$/R31>[8cedbd36]
+   F<16:		COUNT*cedbd36]>[]
+20 20 8 False
+   T<20:#	BANKCALL>[a3a9c271]
+   F<0:>[]
+54 54 53 False
+   T<54:		PUSH	DMP		# Z SQ TO PDL+2  E:(-26) M:(-24)>[19ed10ee]
+   T<53:		PUSH	DP		# Z SQ TO PDL+2  E:(-26) M:(-24)>[19ed10ee]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           17 	          42
+Error bytes.....>          598	        1624
+Error percent...>         0.03 %	        0.02 %
+Error ppm.......>       269.72 ppm	      244.16 ppm
+----------------------------------------
+runend: 2021-07-21 23:26:41.226067
+runtime: 0:15:19.680922
+========================================================================
+Run # 3
+runbeg: 2021-07-21 23:26:41.226201
+----------------------------------------
+52 52 39 False
+   T<52:		STOVL	V(CSM)		# CSM VELOCITY - M/CS*2(7)>[1e3a57a9]
+   T<39:		STOVL	 VELOCITY - M/CS*2(7)>[1e3a57a9]
+34 34 29 False
+   T<34:SAVEFLAG	EQUALS	EBANKTEM>[50152407]
+   T<29:SAVEFLAGLS	EBANKTEM>[50152407]
+24 24 8 False
+   T<24:		CADR	GOPROG2>[56654352]
+   F<0:>[]
+32 32 25 False
+   T<32:		DCA	V		# M/CS *2(-7)>[e2d0f674]
+   F<25:		DCA	V		# M/CS *2(0f674]>[]
+70 70 62 False
+   T<70:VGAIN*		STORE	VG		# VELOCITY TO BE GAINED SCALED AT (7) M/CS>[e770983e]
+   T<62:VGAIN*		STORE	VG		# VELOCITY TO BE GALED AT (7) M/CS>[e770983e]
+120 120 112 False
+   T<120:#	ALIGNS THE IMU TO ONE OF THREE ORIENTATIONS SELECTED BY THE ASTRONAUT.  THE PRESENT IMU ORIENTATION IS KNOWN>[45fb21d8]
+   T<112:#	ALIGNS THE IMU TO ONE  ORIENTATIONS SELECTED BY THE ASTRONAUT.  THE PRESENT IMU ORIENTATION IS KNOWN>[45fb21d8]
+24 24 8 False
+   T<24:		ROR	SUPERBNK>[d7fdcc14]
+   F<0:>[]
+32 32 25 False
+   T<32:RECALTST 	CCS	CADRSTOR>[897dbc9b]
+   T<25:RECALTSTADRSTOR>[897dbc9b]
+25 25 17 False
+   T<25:G+N,AUTO	EXTEND>[26c61e15]
+   F<17:G+N,AUTO26c61e15]>[]
+22 22 9 False
+   T<22: -1		CA	ZERO>[1ac98c57]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           10 	          52
+Error bytes.....>          435	        2059
+Error percent...>         0.02 %	        0.02 %
+Error ppm.......>       196.20 ppm	      232.17 ppm
+----------------------------------------
+runend: 2021-07-21 23:41:58.048238
+runtime: 0:15:16.822037

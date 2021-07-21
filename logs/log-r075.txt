@@ -1,0 +1,338 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 20:20:49.221935
+----------------------------------------
+47 47 36 False
+   T<47:##				and corrected the errors found.>[876f1b40]
+   F<36:##				and corrected the errors found>[]
+64 64 18 False
+   T<64:		TS	EPSILON		# EPSILON IS LIMITED TO A MAX. OF .42265>[4c386d20]
+   F<18:		TS	EPSILON		# EP>[]
+79 79 69 False
+   T<79:##		2016-12-13 RSB	Proofed text comments with octopus/ProoferComments>[ed7824bc]
+   T<69:##		2016	Proofed text comments with octopus/ProoferComments>[ed7824bc]
+30 30 8 False
+   T<30:		TCF	+2		# C(A) = 0>[faa26854]
+   F<0:>[]
+16 16 8 False
+   T<16:# ---->[f6035df5]
+   F<0:>[]
+36 36 8 False
+   T<36:P41ADRES	ADRES	P41TABLE -5>[5eb01ebd]
+   F<0:>[]
+64 64 32 False
+   T<64:		READ	CHAN31		# IF BOTH BIT13 AND BIT14 ARE ONE, THEN>[03986555]
+   T<32:		READ	CHAN31ONE, THEN>[03986555]
+17 17 14 False
+   T<17:		CCS	A>[07ea4489]
+   F<14:		CCS	A[07ea44>[]
+42 42 8 False
+   T<42:		1DNADR	V-OTHER				# V-OTHER,+1>[22942cd4]
+   F<0:>[]
+33 33 8 False
+   T<33:T2TOT3		ERASE	+1		# (2)>[041d07eb]
+   F<0:>[]
+80 80 79 False
+   T<80:## about getting access to the (much) higher-quality images which Paul>[e495df99]
+   T<79:## about getting access tothe (much) higher-quality images which Paul>[e495df99]
+85 85 51 False
+   T<85:# ADJUSTING BIT 6 IN THE SCALER TO BE IN PHASE WITH BIT 1 OF T1.  THE LOW 5>[fd17d65a]
+   T<51:# ADJUSTHASE WITH BIT 1 OF T1.  THE LOW 5>[fd17d65a]
+71 71 28 False
+   T<71:#	LOC+2	SP	PRECROOT	 PREC RQD OF ROOT (AS FRACT OF 1ST GUESS)>[a739eb52]
+   T<28:#	LOC+2	SP	PGUESS)>[a739eb52]
+15 15 8 False
+   T<15:			X2>[035e67b5]
+   F<0:>[]
+104 104 66 False
+   T<104:#	1)	EXTRAPOLATE THE LEM AND CSM VECTORS IN ACCORDANCE WITH THE TIME REFERED TO IN CALLER + 1.>[2448115e]
+   T<66:#	1)	EXTRAPOLATE THE LEM AND CSM VECTORS IN ACALLER + 1.>[2448115e]
+16 16 8 False
+   T<16:		GOTO>[de6cfc32]
+   F<0:>[]
+25 25 8 False
+   T<25:		EBANK=	VGPREV>[a8185ac8]
+   F<0:>[]
+24 24 17 False
+   T<24:#					LOCATION>[acf67d47]
+   F<17:#					LOacf67d47]>[]
+56 56 28 False
+   T<56:		TC	KILLMON		# IF KILLER BIT = 1, NO REQUESTS>[42c52f0c]
+   F<28:		TC	KILLMON		# IF KILLER BI>[]
+45 45 14 False
+   T<45:# THE CALLING SEQUENCE FOR NVSUB IS>[1003ec0f]
+   F<14:# THE CALLING >[]
+26 26 17 False
+   T<26:		ADRES	3AXISFLG>[2a345a85]
+   F<17:		ADRES	3AXISFLG[>[]
+19 19 11 False
+   T<19:		AD	TEMK>[b8a79396]
+   F<11:		AD	TEMK[b>[]
+28 28 22 False
+   T<28:ENDT(X)		TC	DANZIG>[4b5d0363]
+   F<22:ENDT(X)		TC	DANZIG[4b5>[]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           23 	          23
+Error bytes.....>         1022	        1022
+Error percent...>         0.05 %	        0.05 %
+Error ppm.......>       460.96 ppm	      460.96 ppm
+----------------------------------------
+runend: 2021-07-21 20:36:17.414689
+runtime: 0:15:28.192754
+========================================================================
+Run # 1
+runbeg: 2021-07-21 20:36:17.414935
+----------------------------------------
+11 11 9 False
+   T<11:#>[70659eff]
+   F<0:>[]
+36 36 12 False
+   T<36:### FILE="Main.annotation">[2e7cc7b3]
+   F<12:### FILE7b3]>[]
+63 63 49 False
+   T<63:POLYCOEF	BMN	PUSH		# 0D=1/W (+2) OR 16/W (+6)	PL AT 2>[49cbaf91]
+   F<49:POLYCOEF	BMN	PUSH		# 0D=1/W (+2) OR 16/W (+6)	PL >[]
+57 57 33 False
+   T<57:					# ED AND COUNT OF COMPLETE DUMPS ALREADY S>[363ca9ac]
+   T<33:					# EDUMPS ALREADY S>[363ca9ac]
+49 49 29 False
+   T<49:##		2016-12-13 RSB	GOTOP00H -> GOTOPOOH>[32e805e6]
+   F<29:##		2016-12-13 RSB	GOTOP00H ->[]
+32 32 16 False
+   T<32:		ADRES	ORBMANUV	# P41>[e5e4f9e9]
+   F<16:		ADRES		# P41[e>[]
+24 24 21 False
+   T<24:		TCF	ENDOFJOB>[a0ca6a80]
+   F<21:		TCF	ENDOFJOB[a0ca6a>[]
+25 25 9 False
+   T<25:		CADR	IMUCOARS>[4b7b81d7]
+   F<0:>[]
+22 22 8 False
+   T<22:		XCH	ADDRWD>[297ffb60]
+   F<0:>[]
+18 18 8 False
+   T<18:		DDOUBL>[c26ab36e]
+   F<0:>[]
+80 80 56 False
+   T<80:## was performed by Paul Fjeld, and arranged for by Deborah Douglas of>[5e2b92ad]
+   T<56:## was pand arranged for by Deborah Douglas of>[5e2b92ad]
+30 30 22 False
+   T<30:			KONMAT +2	# ZEROS>[f45eaa1f]
+   T<22:			KONMAEROS>[f45eaa1f]
+32 32 8 False
+   T<32:			ATY		# ATY(2)*2(18)>[29f96539]
+   F<0:>[]
+51 51 36 False
+   T<51:#	NUMBER OF MARKS INCORPORATED IN MARKCTR>[203a49c6]
+   T<36:#	NUMBERPORATED IN MARKCTR>[203a49c6]
+11 11 8 False
+   T<11:#>[70659eff]
+   F<0:>[]
+27 27 8 False
+   T<27:## Pages:	752-784>[95285b09]
+   F<0:>[]
+20 20 12 False
+   T<20:			MPAC +3>[98feae37]
+   F<12:			MPAC +3[9>[]
+27 27 16 False
+   T<27:		TC	CLPASHI		# +>[d7e9c136]
+   F<16:		TC	CLPASHI		# >[]
+59 59 57 False
+   T<59:#	10110			POSITION7 (XXXX.X NAUT MI)	USE ARITHDP4>[0096b52b]
+   T<57:#	10110	POSITION7 (XXXX.X NAUT MI)	USE ARITHDP4>[0096b52b]
+28 28 8 False
+   T<28:						#			ALTITUDE>[20ebf36f]
+   F<0:>[]
+78 78 57 False
+   T<78:# TRG*SMNB AND TRG*NBSM BOTH EXPECT TO SEE THE 2'S COMPLEMENT ANGLES>[4307a6c3]
+   T<57:# TRG*SMTH EXPECT SEE THE 2'S COMPLEMENT ANGLES>[4307a6c3]
+63 63 57 False
+   T<63:#				B.	A T6RUPT IS WAITING IN THE PRIORITY CHAIN, OR>[34dc8ab5]
+   T<57:#				B.	A TIS WAITING IN THE PRIORITY CHAIN, OR>[34dc8ab5]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+58 58 14 False
+   T<58:		TC	UPOUT +1	# GO TO COMMON UPDATE PROGRAM EXIT>[56e56117]
+   F<14:		TC	UPOUT +1	>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           25 	          48
+Error bytes.....>          921	        1943
+Error percent...>         0.04 %	        0.04 %
+Error ppm.......>       415.40 ppm	      438.18 ppm
+----------------------------------------
+runend: 2021-07-21 20:51:46.113716
+runtime: 0:15:28.698781
+========================================================================
+Run # 2
+runbeg: 2021-07-21 20:51:46.113853
+----------------------------------------
+19 19 8 False
+   T<19:## Page 5>[6637861b]
+   F<0:>[]
+80 80 73 False
+   T<80:## was performed by Paul Fjeld, and arranged for by Deborah Douglas of>[5e2b92ad]
+   T<73:## was pd by Paul Fjeld, and arranged for by Deborah Douglas of>[5e2b92ad]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+23 23 14 False
+   T<23:		TS	MPAC2SAV>[3607bcd0]
+   F<14:		TS	MPA7bcd0]>[]
+75 75 43 False
+   T<75:UERROR		EQUALS	DAPTREG5	# U,V-AXES ATT ERROR FOR RCS CONTROL LAWS>[833c919b]
+   T<43:UERROR		RROR FOR RCS CONTROL LAWS>[833c919b]
+73 73 54 False
+   T<73:DAPDATA1	CAF	BOOLSMSK	# SET DISPLAY ACCORDING TO DAPBOOLS BITS.>[25172936]
+   T<54:DAPDATA1 DISPLAY ACCORDING TO DAPBOOLS BITS.>[25172936]
+18 18 8 False
+   T<18:		AD	ONE>[e800f432]
+   F<0:>[]
+60 60 27 False
+   T<60:		EXTEND			# C(A) = NBD	(GYRO PULSES)/(CS) X 2(-5)>[b049217e]
+   T<27:		EXTEND) X 2(-5)>[b049217e]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+21 21 14 False
+   T<21:		MASK	BIT4>[edb2a368]
+   F<14:		MASK	BIT4[ed>[]
+29 29 25 False
+   T<29:#				TCCSM(LEM) = 0>[8f806376]
+   T<25:#				TCCEM) = 0>[8f806376]
+20 20 12 False
+   T<20:		STODL	VN>[4fe4c019]
+   F<12:		STODL	VN[4>[]
+45 45 33 False
+   T<45:RRNB1		PUSH	COS		# SHAFT ANGLE TO 2>[10ff36cb]
+   F<33:RRNB1		PCOS		# SHAFT ANGLE T36cb]>[]
+69 69 68 False
+   T<69:# BIT (CHAN 33 BIT 2) CHANGES TO 0 AND NO PROGRAM WAS USING>[57305b79]
+   T<68:# BIT (CHAN 33 BIT 2) CHANGES T 0 AND NO PROGRAM WAS USING>[57305b79]
+80 80 8 False
+   T<80:# RADAR DATA ARE READ BY A BANKCALL FOR THE APPROPRIATE LEAD-IN BELOW.>[21d5ba46]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+79 79 76 False
+   T<79:##		2017-03-14 RSB	Comment-text fixes noted in proofing Luminary 116.>[f2a79fd3]
+   T<76:##		2017-14 RSB	Comment-text fixes noted in proofing Luminary 116.>[f2a79fd3]
+19 19 8 False
+   T<19:		TS	CODE>[65b16e62]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+16 16 8 False
+   T<16:		TC	A>[7d77f339]
+   F<0:>[]
+22 22 8 False
+   T<22:		EBANK=	TFF>[f7caaa11]
+   F<0:>[]
+36 36 33 False
+   T<36:### FILE="Main.annotation">[2e7cc7b3]
+   T<33:### FILEain.annotation">[2e7cc7b3]
+111 111 103 False
+   T<111:#	1) ISS TURN-ON:  IN THIS SITUATION THE COMPUTER IS OPERATING WHEN THE ISS IS TURNED ON.  NOMINALLY,>[8453093d]
+   T<103:#	1) ISS:  IN THIS SITUATION THE COMPUTER IS OPERATING WHEN THE ISS IS TURNED ON.  NOMINALLY,>[8453093d]
+45 45 30 False
+   T<45:		EXTEND			# ACC = MAX(AMIN, AOS-).>[5bd5b18b]
+   F<30:		EXTEND			# ACC = MAX(AMIN, A>[]
+58 58 40 False
+   T<58:		EXTEND			# IS TIME TO AXIS LESS THAN 150 MSEC.>[6d9e3d75]
+   T<40:		EXTENDIS LESS THAN 150 MSEC.>[6d9e3d75]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           25 	          73
+Error bytes.....>         1046	        2989
+Error percent...>         0.05 %	        0.04 %
+Error ppm.......>       471.78 ppm	      449.38 ppm
+----------------------------------------
+runend: 2021-07-21 21:07:15.145946
+runtime: 0:15:29.032093
+========================================================================
+Run # 3
+runbeg: 2021-07-21 21:07:15.146296
+----------------------------------------
+25 25 12 False
+   T<25:V50N00		VN	5000>[1bddcad7]
+   F<12:V50N00		VN	5>[]
+55 55 29 False
+   T<55:DELVS		EQUALS	UHZP +6		# B(6)PRM DELVS = WMXR>[0417c796]
+   F<29:DELVS		EQUALS	UHZP +6		# B(6)>[]
+69 69 53 False
+   T<69:## Mod history:	2009-05-15 OH	Transcribed from page images.>[807c2d21]
+   F<53:## Mod history:	2009-05-15 OH	Transcribed from page i>[]
+73 73 51 False
+   T<73:STARTSB2	CAF	OCT30001	# DURING SOFTWARE RESTART, DO NOT DISTURB>[3e8e7441]
+   T<51:STARTSB2 SOFTWARE RESTART, DO NOT DISTURB>[3e8e7441]
+21 21 16 False
+   T<21:			TIMESTEP>[373edd71]
+   F<16:			TIMES73edd71]>[]
+71 71 55 False
+   T<71:#	TO THE LEM AND COMPUTE THERE FROM THE REQUIRED-VELOCITY AND>[cbfd0500]
+   T<55:#	TO THE LEM AND COMPUTE THERE D-VELOCITY AND>[cbfd0500]
+29 29 8 False
+   T<29:# REDESIGNATOR TRAP>[a89888e8]
+   F<0:>[]
+57 57 41 False
+   T<57:RESETRPT	CAF	BIT12		#		Y:	RESET RUPT, TERMINATE>[cada510b]
+   T<41:RESETRPT:	RESET RUPT, TERMINATE>[cada510b]
+76 76 8 False
+   T<76:#	THIS LGC PROGRAM IS INTENDED FOR USE IN THE LM DURING THE MANNED>[7f89c764]
+   F<0:>[]
+22 22 8 False
+   T<22:## Page 1229>[20ae75f7]
+   F<0:>[]
+84 84 79 False
+   T<84:#	CHECK RR CDU FAIL BEFORE RETURNING TO THE CALLING PROGRAM.  IF DESIGNATE>[779c3509]
+   F<79:#	CHECK RR CDU FAIL BEFORE RETURNING TO THE CALLING PROGRAM.  IF DESIGNATE[779c>[]
+62 62 52 False
+   T<62:		TCF	GOTANGLS	# GET CDU ANGLES ONLY AFTER 1ST PASS.>[77def4cc]
+   F<52:		TCF	GOTANGLS	# GET CDU ANGLES ONLY AFTER 1ST PASS.>[]
+17 17 8 False
+   T<17:			RTX2>[92ef6e8d]
+   F<0:>[]
+17 17 16 False
+   T<17:			EPS2>[bbdc70bc]
+   F<16:			EPS2[bbdc70bc>[]
+62 62 26 False
+   T<62:		ADS	FLAGWRD0	# THE FOLLOWING ENEMA WILL REMOVE THE>[b98171a0]
+   T<26:		ADS	FLMOVE THE>[b98171a0]
+42 42 31 False
+   T<42:					# LIGHTS TEST WILL BE SEEN.>[afd6f9d4]
+   F<31:					# LIGHTS TEST WILL BE SEEN>[]
+25 25 8 False
+   T<25:		COUNT*	$$/DAP>[b3fa284e]
+   F<0:>[]
+73 73 57 False
+   T<73:## Purpose: 	Part of the source code for Luminary 1A build 099.>[2d367a96]
+   T<57:## Purpose: 	Part of thr Luminary 1A build 099.>[2d367a96]
+115 115 100 False
+   T<115:#		PVALTEST UPDATED (1,S WHEN VALVE CLOSURES HAVE BEEN TRANSLATED INTO CH5MASK & CH6MASK; CHAN 32 FORMAT)>[c703e40d]
+   F<100:#		PVALTEST UPDATED (1,S WHEN VALVE CLOSURES HAVE BEEN TRANSLATED INTO CH5MASK & CH6MASK; CHAN 32 FO>[]
+117 117 74 False
+   T<117:# RTB OP CODE NORMUNIT IS LIKE INTERPRETIVE INSTRUCTION UNIT, EXCEPT THAT IT CAN BE DEPENDED ON NOT TO BLOW>[174eba2f]
+   F<74:# RTB OP CODE NORMUNIT IS LIKE INTERPRETIVE INSTRUCTION UNIT, EXCEPT THAT >[]
+119 119 102 False
+   T<119:#	WHICH IS TO BEGIN IN C(A) CENTISECONDS.  WAITLIST UPDATES TIME3, LST1 AND LST2.  THE MEANING OF THESE LISTS>[15a454c0]
+   T<102:#	WHICH IS TO BEGIN IN C(A) CENTISECONDS.  WAITLISLST1 AND LST2.  THE MEANING OF THESE LISTS>[15a454c0]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           21 	          94
+Error bytes.....>         1231	        4220
+Error percent...>         0.06 %	        0.05 %
+Error ppm.......>       555.23 ppm	      475.84 ppm
+----------------------------------------
+runend: 2021-07-21 21:22:43.231009
+runtime: 0:15:28.084713

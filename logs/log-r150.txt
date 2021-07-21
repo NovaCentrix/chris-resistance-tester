@@ -1,0 +1,287 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 21:27:53.869455
+----------------------------------------
+117 117 8 False
+   T<117:#	R-479, MISSION PROGRAMMING DEFINITION MEMO NO. 10, LUNAR LANDING MISSION GSOP-SECTION 5.5, SGA MEMO 67-8.>[a211531f]
+   F<0:>[]
+27 27 21 False
+   T<27:## Pages:	038-053>[e2e36350]
+   F<21:## Pages:	038-053[e2e>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+47 47 8 False
+   T<47:		1DNADR	R-OTHER +4			# R-OTHER +4,+5>[947a0690]
+   F<0:>[]
+43 43 40 False
+   T<43:AVEGEXIT	EQUALS	DVTHRUSH +1	# (2)>[f2bd7857]
+   F<40:AVEGEXIT	EQUALS	DVTHRUSH +1	# (2)[f2bd78>[]
+22 22 8 False
+   T<22:ADIAZ		ERASE>[7cdadbc9]
+   F<0:>[]
+48 48 22 False
+   T<48:		CA	UNFVLIM		# SAME LIMIT FOR Y AND Z>[28cb5e75]
+   F<22:		CA	UNFVLIM		# SAME L>[]
+46 46 42 False
+   T<46:# FLPC		138		BIT 12 FLAG  9		FLPCBIT>[cf6ff32d]
+   T<42:# FLPC			BIT 12 FLAG  9		FLPCBIT>[cf6ff32d]
+69 69 52 False
+   T<69:ANTENFLG	=	183D			#	RR ANTENNA MODE IS	RR ANTENNA IN MODE 1>[aec0d995]
+   F<52:ANTENFLG	=	183D			#	RR ANTENNA MODE IS	RR ANTENNA IN>[]
+21 21 13 False
+   T<21:		TC	ESTIMS>[5d5c057c]
+   F<13:		TC	EST057c]>[]
+30 30 15 False
+   T<30:USEPIOS		SETPD	VLOAD>[c5a51ade]
+   F<15:USEPIOS		SETPD	>[]
+40 40 35 False
+   T<40:		READ	CHAN5		# DCA 4 OR DCS 4>[69e3b994]
+   F<35:		READ	CHAN5		# DCA 4 OR D69e3b994]>[]
+23 23 21 False
+   T<23:		TC	OVERFLWZ>[1044d921]
+   F<21:		TC	OVERFLWZ[1044d92>[]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+25 25 17 False
+   T<25:		SETLOC	P66LOC>[7a2ca0fc]
+   F<17:		SETLOC7a2ca0fc]>[]
+42 42 26 False
+   T<42:		CS	SUPER110	# -96D + 100D = 4.>[f35f4b87]
+   T<26:		CS	SUP00D = 4.>[f35f4b87]
+49 49 25 False
+   T<49:#	         = 0 FOR AIMPT (LAMBERT) COMP>[9c4a2675]
+   T<25:#	      T) COMP>[9c4a2675]
+62 62 59 False
+   T<62:#		TC	PHASCHNG	THIS SETS LONGBASE AND UPON A RESTART>[046539d9]
+   T<59:#		TC	PHHNG	THIS SETS LONGBASE AND UPON A RESTART>[046539d9]
+17 17 9 False
+   T<17:		DCA	0>[8d6aae2d]
+   F<0:>[]
+47 47 31 False
+   T<47:		ECADR	LANDLAT			# 89	DPDEG(90)		DP3>[e110cf2b]
+   T<31:		ECADR	PDEG(90)		DP3>[e110cf2b]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+62 62 38 False
+   T<62:		XCH	QERROR		# SAVE Q-ERROR FOR EIGHT-BALL DISPLAY.>[b715f22a]
+   T<38:		XCH	QE EIGHT-BALL DISPLAY.>[b715f22a]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+19 19 8 False
+   T<19:		INDEX	A>[022b01a9]
+   F<0:>[]
+47 47 30 False
+   T<47:##				and corrected the errors found.>[876f1b40]
+   F<30:##				and corrected the errors>[]
+21 21 8 False
+   T<21:		CA	T6NEXT>[d1ef3992]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+105 105 73 False
+   T<105:#	VELOCITY VN TO A RADIUS LENGTH SPECIFIED BY RTERM, SUPPLIED BY THE USER.  THE POSITION VECTOR>[de5133c8]
+   T<73:#	VELOCIED BY RTERM, SUPPLIED BY THE USER.  THE POSITION VECTOR>[de5133c8]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           29 	          29
+Error bytes.....>         1097	        1097
+Error percent...>         0.05 %	        0.05 %
+Error ppm.......>       494.79 ppm	      494.79 ppm
+----------------------------------------
+runend: 2021-07-21 21:43:26.492081
+runtime: 0:15:32.622626
+========================================================================
+Run # 1
+runbeg: 2021-07-21 21:43:26.501097
+----------------------------------------
+24 24 16 False
+   T<24:		INDEX	FIXLOC>[a26cbc95]
+   F<16:		INDEX	26cbc95]>[]
+34 34 18 False
+   T<34:		DAD	DSU		#				PL AT 0D>[2fac2492]
+   F<18:		DAD	DSU		#				PL>[]
+74 74 63 False
+   T<74:DVLOS		EQUALS	RACT1		# I(6) S-S DELTA VELOCITY, LOS COORD-DISPLA>[9245eb58]
+   F<63:DVLOS		EQUALS	RACT1		# I(6) S-S DELTA VELOCITY, LOS COORD-DISPL>[]
+21 21 8 False
+   T<21:## Page 135>[49e59088]
+   F<0:>[]
+34 34 33 False
+   T<34:MFISYM		EQUALS	TMIS		# I>[a7f73017]
+   F<33:MFISYM		EQUALS	TMIS		# I[a7f73017>[]
+32 32 8 False
+   T<32:		STORE	UNY/2		# UNY/2>[c5ab8876]
+   F<0:>[]
+28 28 8 False
+   T<28:# BIT 6 FLAG 4	(S)>[1f98ef07]
+   F<0:>[]
+24 24 8 False
+   T<24:		INDEX	CDUIND>[79ef5743]
+   F<0:>[]
+25 25 8 False
+   T<25:PIPUSE		CS	ZERO>[7f329b4e]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+24 24 23 False
+   T<24:		DCA	MPAC 	+5>[9c56cdeb]
+   F<23:		DCA	MPAC 	+5[9c56cdeb>[]
+39 39 31 False
+   T<39:BIASCALE	OCT	75777		# = -1/16>[a3943fa4]
+   T<31:BIASCALE77		# = -1/16>[a3943fa4]
+20 20 8 False
+   T<20:		VXSC	VAD>[28ec16f3]
+   F<0:>[]
+84 84 68 False
+   T<84:#	REPEATING AT STDESIG.  IF THE RR SEARCH ROUTINE (LRS24.1) IS DESIGNATING>[e3e61d03]
+   F<68:#	REPEATING AT STDESIG.  IF THE RR SEARCH ROUTINE (LRS24.1) IS61d03]>[]
+81 81 78 False
+   T<81:#	(RADMODES BIT 15) IS DESIRED AND THE SEARCH ROUTINE IS NOT OPERATING,>[ed0b7bad]
+   T<78:#	(RADMODES BIT 15) IS DESIRED AND  SEARCH ROUTINE IS NOT OPERATING,>[ed0b7bad]
+65 65 59 False
+   T<65:		TC	FIXDELAY	# SCAN ONCE PER SECOND 15 TIMES MAX AFTER>[65b5edbe]
+   T<59:		TC	FIXDELAY	# SCAN ONCE PEND 15 TIMES MAX AFTER>[65b5edbe]
+62 62 26 False
+   T<62:		TCF	R29RRR?		# BAD READ OR SCALE CHANGE ... WHICH?>[4b2874d4]
+   T<26:		TCF	R2. WHICH?>[4b2874d4]
+36 36 8 False
+   T<36:		OCT	00146		#	A	2 5 10 13>[95b0877b]
+   F<0:>[]
+119 119 65 False
+   T<119:# LOCK.  IF THE AXIS TO BE POINTED IS MORE THAN 40.6 DEGREES BUT LESS THAN 60.5 DEG FROM THE +X (OR -X) AXIS,>[2391681a]
+   T<65:# LOCK.  IF THE AXIS TO BE POINTOM THE +X (OR -X) AXIS,>[2391681a]
+23 23 8 False
+   T<23:		DCA	ALTCRIT>[2ca31d27]
+   F<0:>[]
+59 59 47 False
+   T<59:##				(from STABLE_ORBIT.agc) so as to agree with>[6d509fa1]
+   F<47:##				(from STABLE_ORBIT.agc) so as to agree 1]>[]
+72 72 33 False
+   T<72:#		RMAG1		E:(-29) M:(-27)	PRESENT RADIUS, M			LEFT BY TFFCONIC>[2523144c]
+   F<33:#		RMAG1		E:(-29) M:(-27)	PRESENT>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           22 	          51
+Error bytes.....>          990	        2087
+Error percent...>         0.04 %	        0.05 %
+Error ppm.......>       446.53 ppm	      470.66 ppm
+----------------------------------------
+runend: 2021-07-21 21:58:54.467050
+runtime: 0:15:27.965953
+========================================================================
+Run # 2
+runbeg: 2021-07-21 21:58:54.474307
+----------------------------------------
+18 18 16 False
+   T<18:		EXTEND>[9576ae98]
+   F<16:		EXTEND576ae98]>[]
+25 25 8 False
+   T<25:		TCF	+3		# YES>[c0f22369]
+   F<0:>[]
+23 23 22 False
+   T<23:PHASE6		ERASE>[072b0f5f]
+   T<22:PHASE6		RASE>[072b0f5f]
+79 79 68 False
+   T<79:# THESE ERASABLES SHOULD NOT BE SHARED DURING P63, P64, P65, P66, P67>[5e3c0f57]
+   F<68:# THESE ERASABLES SHOULD NOT BE SHARED DURING P63, P64, P65, P66, P6>[]
+50 50 37 False
+   T<50:# OLDESFLG	014		BIT  1 FLAG  0		OLDESBIT>[7754cdb6]
+   T<37:# OLDESF1 FLAG  0		OLDESBIT>[7754cdb6]
+23 23 15 False
+   T<23:		TC	STARTSUB>[fb6e2ff7]
+   F<15:		TC	STARTSUB[]>[]
+53 53 43 False
+   T<53:		CLEAR	CALL		# EXTRAPOLATE LM STATE VECTOR>[165b86c5]
+   F<43:		CLEAR	CALL		# EXTRAPOLATE LM STATE VECTO]>[]
+48 48 29 False
+   T<48:##		2021-05-30 ABS	ISWCALLL -> ISWCALL>[4e3da4ef]
+   F<29:##		2021-05-30 ABS	ISWCda4ef]>[]
+74 74 49 False
+   T<74:##	Assemble revision 001 of AGC program LMY99 by NASA 2021112-61>[65ac8298]
+   T<49:##	Assemrogram LMY99 by NASA 2021112-61>[65ac8298]
+111 111 91 False
+   T<111:# HERE IS THE PHILOSOPHY OF GUILDENSTERN:	ON EVERY APPEARANCE OR DISAPPEARANCE OF THE MANUAL THROTTLE>[d990bb4f]
+   F<91:# HERE IS THE PHILOSOPHY OF GUILDENSTERN:	ON EVERY APPEARANCE OR DISAPPEARANCE OF THE MANUA>[]
+43 43 19 False
+   T<43:		MP	VBUF		# FORM COS S ULOSNB'X.>[c87d6ab1]
+   F<19:		MP	VBUF		# FORM C>[]
+69 69 8 False
+   T<69:#		DESIRED THE RADAR WAS TURNED ON AND LOCKED ON THE CSM BY>[28c74ab6]
+   F<0:>[]
+67 67 11 False
+   T<67:#			IS SHORT -- AND THE ASSOCIATED TIME OF THE ENGINE OFF>[7aa3fffc]
+   F<11:#			IS Sfc]>[]
+82 82 81 False
+   T<82:##		2017-03-08 RSB	Comment-text fixes noted while proofing Luminary 116.>[e1752013]
+   F<81:##		2017-03-08 RSB	Comment-text fixes noted while proofing Luminary 116.[e152013]>[]
+44 44 30 False
+   T<44:##				Luminary131 file, using page>[1896a388]
+   T<30:##				Luminary131 fi>[1896a388]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           15 	          66
+Error bytes.....>          809	        2896
+Error percent...>         0.04 %	        0.04 %
+Error ppm.......>       364.89 ppm	      435.40 ppm
+----------------------------------------
+runend: 2021-07-21 22:14:20.949016
+runtime: 0:15:26.474709
+========================================================================
+Run # 3
+runbeg: 2021-07-21 22:14:20.949134
+----------------------------------------
+45 45 32 False
+   T<45:		2DEC	-.7160644554 B-1	# STAR 26	Y>[7eec1849]
+   F<32:		2DEC	-.7160644554 B-1	# c1849]>[]
+50 50 8 False
+   T<50:# SRCHOPTN	031		BIT 14 FLAG  2		SRCHOBIT>[597dc60a]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+49 49 37 False
+   T<49:		CA	NBDZ		# (GYRO PULSES)/(CS) X 2(-5)>[d1e670b9]
+   T<37:		CA	NBDULSES)/(CS) X 2(-5)>[d1e670b9]
+25 25 21 False
+   T<25:SCALPREP	EXTEND>[cbfab9dc]
+   T<21:SCALPREP	ED>[cbfab9dc]
+27 27 25 False
+   T<27:		EBANK=	LOSCOUNT>[a3c35908]
+   F<25:		EBANK=	LOSCOUNT[a3c3590>[]
+31 31 13 False
+   T<31:# ..... COMPTGO .....>[353b1b04]
+   F<13:# ..... COMPT>[]
+120 120 93 False
+   T<120:# A LONGCALL HAS ITS GENADR OF ITS 2CADR STORED NEGATIVELY AND ITS BBCON STORED POSITIVELY.  IN ITS PRDTTAB IS>[0119abcf]
+   T<93:# A LONGCALL HAS ITS GENADR OF ITS 2CADR STORED NEGATIVELY AND ITS BBCON STDTTAB IS>[0119abcf]
+23 23 18 False
+   T<23:		BZF	ENDVDAT>[151ef072]
+   F<18:		BZF	ENDVDAT[151e>[]
+25 25 8 False
+   T<25:MANUVER1	EQUALS>[cf236dd1]
+   F<0:>[]
+42 42 26 False
+   T<42:		AD	TTOAXIS		# SCALED AT 4 SEC.>[263dc643]
+   T<26:		AD	TTOT 4 SEC.>[263dc643]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           11 	          77
+Error bytes.....>          447	        3343
+Error percent...>         0.02 %	        0.04 %
+Error ppm.......>       201.61 ppm	      376.95 ppm
+----------------------------------------
+runend: 2021-07-21 22:29:40.557519
+runtime: 0:15:19.608385

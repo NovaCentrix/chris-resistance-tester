@@ -1,0 +1,359 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 19:07:21.514841
+----------------------------------------
+122 122 33 False
+   T<122:#	VVEC		* +7 FOR EARTH	*	DP INITIAL VELOCITY VECTOR IN METERS/CENTISECOND REQUIRED TO SATISFY THE BOUNDARY VALUE>[ef1efd0d]
+   T<33:#	VVEC		* +7 FOR EAALUE>[ef1efd0d]
+14 14 8 False
+   T<14:			0>[a48620fc]
+   F<0:>[]
+20 20 19 False
+   T<20:		SIGN	BZE>[046cfb71]
+   T<19:		SIGN	BE>[046cfb71]
+18 18 8 False
+   T<18:			BEE19>[a90ab3ee]
+   F<0:>[]
+113 113 78 False
+   T<113:#	    AS THERE IS ANY REQUEST AWAITING OPERATOR RESPONSE, ANY USE OF PROCEED OR TERMINATE WILL SERVE AS>[da2a5b9f]
+   T<78:#	    ASATOR RESPONSE, ANY USE OF PROCEED OR TERMINATE WILL SERVE AS>[da2a5b9f]
+105 105 88 False
+   T<105:# LRS22.1 (SAME AS PREVIOUS SECTION) ALSO DOWNLINK FOR RR (R29)		(10D) CANNOT SHARE WITH L.A.D.>[310e3469]
+   T<88:# LRS22.1 (SAME AS PREVIOUS SECTION) ALSO DOWNLINK D) CANNOT SHARE WITH L.A.D.>[310e3469]
+42 42 8 False
+   T<42:		CADR	GOPROG2		# CAUSE RESTART.>[d2cc14e2]
+   F<0:>[]
+45 45 41 False
+   T<45:## Website:	www.ibiblio.org/apollo.>[ebdec6a7]
+   F<41:## Website:	www.ibiblio.org/apollo.[ebdec>[]
+60 60 12 False
+   T<60:		INDEX	ADDRWD		# LOAD MPAC,+1, PUSHING THE FORMER>[102746bd]
+   F<12:		INDEX	6bd]>[]
+62 62 22 False
+   T<62:SXA		TC	15ADRERS	# STORE INDEX REGISTER IN ERASABLE.>[05163ee9]
+   T<22:SXA		TC	BLE.>[05163ee9]
+66 66 51 False
+   T<66:		INDEX	FIXLOC		# SLOW IN THIS CASE, BUT SAVES STORAGE.)>[28f67379]
+   T<51:		INDEX	FN THIS CASE, BUT SAVES STORAGE.)>[28f67379]
+60 60 8 False
+   T<60:$RADAR_LEADIN_ROUTINES.agc			        # pp. 490-491>[91873f51]
+   F<0:>[]
+49 49 8 False
+   T<49:		ADRES	VEHUPFLG	# VECTOR TO BE UPDATED>[5fcea6c0]
+   F<0:>[]
+28 28 23 False
+   T<28:P20LEMF		TC	R21LEM>[34b79fa9]
+   F<23:P20LEMF		TC	R21LEM[34b7>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+25 25 17 False
+   T<25:		MASK	RADMODES>[7f689826]
+   F<17:		MASK	R7f689826]>[]
+23 23 15 False
+   T<23:		TC	BANKCALL>[4ceb762a]
+   F<15:		TC	BANeb762a]>[]
+21 21 19 False
+   T<21:		TS	TEMPP2>[fdf23a73]
+   F<19:		TS	TEMPP2[fdf23a7>[]
+31 31 9 False
+   T<31:						#			LONGITUDE/2>[3cb72142]
+   F<0:>[]
+57 57 21 False
+   T<57:					# 6,5, AND LAST BUT NOT LEAST (PERHAPS NOT>[28010a45]
+   F<21:					# 6,5, AND LAST >[]
+23 23 8 False
+   T<23:		TC	GOLOC -1>[f73bf2a8]
+   F<0:>[]
+122 122 80 False
+   T<122:# THAT TNONTEST WILL INITIATE THE ISS INITIALIZATION SEQUENCE.  IF OFF, THE TURN-ON DELAY SIGNAL, CHANNEL 12 BIT>[27f7cf24]
+   T<80:# THAT TON SEQUENCE.  IF OFF, THE TURN-ON DELAY SIGNAL, CHANNEL 12 BIT>[27f7cf24]
+49 49 25 False
+   T<49:# MODULE 6 CONTAINS BANKS 36 THROUGH 43>[713bb2f1]
+   T<25:# MODULEOUGH 43>[713bb2f1]
+80 80 38 False
+   T<80:# TIME OF FLIGHT ELLIPSE WHEN DEL (ECCENTRIC ANOM) GEQ 90 AND LEQ -90.>[76ff854e]
+   F<38:# TIME OF FLIGHT ELLIPSE WHEN DEL (ECC>[]
+80 80 79 False
+   T<80:## was performed by Paul Fjeld, and arranged for by Deborah Douglas of>[5e2b92ad]
+   T<79:## was prformed by Paul Fjeld, and arranged for by Deborah Douglas of>[5e2b92ad]
+88 88 77 False
+   T<88:# INPUTS:	AOSQ,AOSR, SCALED AT P1/2, AND ACCDOTQ, ACCDOTR AT PI/2(7).	PI/2(7).>[0aadd5e5]
+   T<77:# INPUTS:	AOSQ,AOSR, SCALED AT P1/2, AND ACCDOTQ, ACCDOTR ATI/2(7).>[0aadd5e5]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           26 	          26
+Error bytes.....>         1413	        1413
+Error percent...>         0.06 %	        0.06 %
+Error ppm.......>       637.31 ppm	      637.31 ppm
+----------------------------------------
+runend: 2021-07-21 19:22:51.148367
+runtime: 0:15:29.633526
+========================================================================
+Run # 1
+runbeg: 2021-07-21 19:22:51.148511
+----------------------------------------
+43 43 8 False
+   T<43:		PDDL	VXSC		# 1/4COS(ROT)UYP 4-9>[95a9b1ef]
+   F<0:>[]
+61 61 37 False
+   T<61:# MOD NO. - 0							LOG SECTION - CONIC SUBROUTINES>[328bbccd]
+   T<37:# MOD NO- CONIC SUBROUTINES>[328bbccd]
+73 73 56 False
+   T<73:LVSQUARE	EQUALS	34D		# SQUARE OF VECTOR INPUT TO ABVAL AND UNIT>[68b28c6f]
+   F<56:LVSQUARE	EQUALS	34D		# SQUARE OF VECTOR INPUT TO ABVAL A>[]
+28 28 8 False
+   T<28:VNCON		VN	501		# *>[fa6f2868]
+   F<0:>[]
+59 59 12 False
+   T<59:		INCR	MPAC +6		# INDICATE GROUP DEMANDS PRESENT.>[d2d8da48]
+   F<12:		INCR	Ma48]>[]
+53 53 23 False
+   T<53:		TC	IRIGZ		# COMPENSATE ACCELERATION TERMS>[59d670e0]
+   F<23:		TC	IRIGZ		# COMPENSAT>[]
+33 33 8 False
+   T<33:# DATE -	MARCH 20, 1967>[1dcf597a]
+   F<0:>[]
+38 38 37 False
+   T<38:## Copyright:	Public domain.>[c75a4f58]
+   T<37:## Copyright:	Public domin.>[c75a4f58]
+26 26 12 False
+   T<26:		INDEX	DAPTEMP6>[521323fc]
+   F<12:		INDEX	DAPT>[]
+67 67 59 False
+   T<67:BITS8/7		OCT	00300		# INERTIAL DATA AND INTERLEAVE FLAGS.>[959e09a9]
+   F<59:BITS8/7		OCT	00300		# INERTIAL DATA AND INTERLEAVE FLAGS.9]>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+26 26 8 False
+   T<26:#	RRNBSW CLEARED>[ccd82058]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+21 21 17 False
+   T<21:		OCT	05024>[3408c456]
+   F<17:		OCT	05024[3408c>[]
+62 62 14 False
+   T<62:#	PERICENTER AND THE ECCENTRICITY OF THE TRAJECTORY.>[02b5ba4f]
+   F<14:#	PERICE5ba4f]>[]
+41 41 8 False
+   T<41:			K1VAL		# M.NEWTONS-CS AT +24>[c1bf3be5]
+   F<0:>[]
+59 59 8 False
+   T<59:		CAF	ZERO		# STAR ALMOST OPTIC AXIS, ZERO CURSOR>[bd3bbc98]
+   F<0:>[]
+62 62 55 False
+   T<62:		CCS	MPAC		# IF MAG OF (MPAC, MPAC+1) G/ 59 M 59 S,>[6a15e30f]
+   F<55:		CCS	MPAC		# IF MAG OF (MPAC, MPAC+1) G/ 59 M 59 S,[6a>[]
+57 57 39 False
+   T<57:# MISCELLANEOUS SERVICE ROUTINES IN FIXED/FIXED>[891d2b38]
+   F<39:# MISCELLANEOUS SERVICE ROUTINES IN FIX>[]
+21 21 9 False
+   T<21:## Page 463>[db3a0313]
+   F<0:>[]
+42 42 8 False
+   T<42:		MXV	VSL1		# LP=M(T)*L  RAD B-0>[18ddac45]
+   F<0:>[]
+10 10 9 False
+   T<10:>[00000000]
+   F<0:>[]
+84 84 50 False
+   T<84:# NAUT VIA DSKY ENTRY DURING COASTING FLIGHT OR WHEN THE LM IS ON THE MOON>[dde13cc0]
+   T<50:# NAUT VHT OR WHEN THE LM IS ON THE MOON>[dde13cc0]
+62 62 60 False
+   T<62:#	(1)  TPASS4	TIME OF INTERCEPT - SAVED FROM P38/P78>[52dac2fb]
+   T<60:#	(1)  TSS4	TIME OF INTERCEPT - SAVED FROM P38/P78>[52dac2fb]
+20 20 8 False
+   T<20:		CAF	ZERO>[9e4c061e]
+   F<0:>[]
+79 79 10 False
+   T<79:##		2016-12-13 RSB	Proofed text comments with octopus/ProoferComments>[ed7824bc]
+   F<10:##		2016-1>[]
+22 22 15 False
+   T<22:P30S		EQUALS>[261e7589]
+   F<15:P30S		EQ1e7589]>[]
+63 63 22 False
+   T<63:		EXTEND			# VERIFY THE UPDATE) HAS BEEN SUCCESSFULLY>[bfc6b92c]
+   F<22:		EXTEND			# VERIFY TH>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           28 	          54
+Error bytes.....>         1232	        2645
+Error percent...>         0.06 %	        0.06 %
+Error ppm.......>       555.68 ppm	      596.50 ppm
+----------------------------------------
+runend: 2021-07-21 19:38:22.351315
+runtime: 0:15:31.202804
+========================================================================
+Run # 2
+runbeg: 2021-07-21 19:38:22.351434
+----------------------------------------
+49 49 33 False
+   T<49:#		CHANGING OF ONLY ONE CARD.  EXAMPLE.>[7711bc9c]
+   T<33:#		CHANGCARD.  EXAMPLE.>[7711bc9c]
+53 53 42 False
+   T<53:		RELINT			# PROCEED TO NOUN 47, MASS LOAD,>[a3188b90]
+   F<42:		RELINT			# PROCEED TO NOUN 47, MASS LOAD>[]
+60 60 39 False
+   T<60:		CCS	A		# SET IMUCADR TO -0 TO INDICATE OPERATION>[e869fddb]
+   F<39:		CCS	A		# SET IMUCADR TO -0 TO INDICAT>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+36 36 8 False
+   T<36:		AD	BUF		# NORMALIZATION.>[8a15c901]
+   F<0:>[]
+75 75 35 False
+   T<75:# .5).  THE RIGHT SHIFT COUNT (TO UNNORMALIZE) IS LEFT IN MPTEMP.>[1f194215]
+   T<35:# .5).  S LEFT IN MPTEMP.>[1f194215]
+23 23 8 False
+   T<23:		TC	DOWNFLAG>[2bf81c77]
+   F<0:>[]
+24 24 8 False
+   T<24:		STORE	CG +14>[acd61f11]
+   F<0:>[]
+64 64 8 False
+   T<64:$LAMBERT_AIMPOINT_GUIDANCE.agc			        # pp. 651-653>[706951ce]
+   F<0:>[]
+121 121 80 False
+   T<121:#	AND RANGE RATE DATA AT 2-SECOND INTERVALS FOR TRANSMISSION TO THE GROUND.  WHEN THE RR IS WITHIN .5 DEGREE OF>[1fffc71f]
+   T<80:#	AND RARANSMISSION TO THE GROUND.  WHEN THE RR IS WITHIN .5 DEGREE OF>[1fffc71f]
+20 20 8 False
+   T<20:#	BANKCALL>[a3a9c271]
+   F<0:>[]
+16 16 8 False
+   T<16:		PDDL>[cc3c3f1e]
+   F<0:>[]
+15 15 8 False
+   T<15:#	 EM>[80652dce]
+   F<0:>[]
+25 25 8 False
+   T<25:		CADR	IMUPULSE>[b688cc3d]
+   F<0:>[]
+19 19 8 False
+   T<19:			PLANET>[e954f08d]
+   F<0:>[]
+74 74 51 False
+   T<74:ISCADR+0	CCS	CADRSTOR	# ABORTS (CODE 01206) IF CADRSTOR NOT= +0.>[e6b724d4]
+   T<51:ISCADR+0(CODE 01206) IF CADRSTOR NOT= +0.>[e6b724d4]
+54 54 8 False
+   T<54:# THAN ONCE, UNLESS THE ANGLES HAVE CHANGED.>[7ffa351b]
+   F<0:>[]
+59 59 8 False
+   T<59:		EBANK=	TFF		# UPDATE AND ORBIT CALCULATIONS FOR>[69ed2409]
+   F<0:>[]
+64 64 48 False
+   T<64:			VECPOINT	# PUTS DESIRED GIM ANG (OG,IG,MG) IN TMPAC>[6c197b36]
+   T<48:			VECPOED GIM ANG (OG,IG,MG) IN TMPAC>[6c197b36]
+23 23 8 False
+   T<23:		RAND	CHAN12>[dc948d3b]
+   F<0:>[]
+19 19 8 False
+   T<19:			*SMNB*>[1377ab3d]
+   F<0:>[]
+23 23 8 False
+   T<23:		TC	WAITLIST>[0f43aea8]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           22 	          76
+Error bytes.....>          926	        3571
+Error percent...>         0.04 %	        0.05 %
+Error ppm.......>       417.66 ppm	      536.88 ppm
+----------------------------------------
+runend: 2021-07-21 19:53:49.705684
+runtime: 0:15:27.354250
+========================================================================
+Run # 3
+runbeg: 2021-07-21 19:53:49.705829
+----------------------------------------
+117 117 114 False
+   T<117:# DURING FREE FALL.  IT IS DESIGNED TO MANEUVER THE SPACECRAFT FROM ITS INITIAL ORIENTATION TO SOME DESIRED>[5b0dffac]
+   T<114:# DURING F FALL.  IT IS DESIGNED TO MANEUVER THE SPACECRAFT FROM ITS INITIAL ORIENTATION TO SOME DESIRED>[5b0dffac]
+27 27 8 False
+   T<27:DCOGA		EQUALS	12D>[fda62c02]
+   F<0:>[]
+27 27 8 False
+   T<27:# DAPIDLER ENTRY.>[119aa315]
+   F<0:>[]
+118 118 78 False
+   T<118:#	7.  ALL FLASHING DISPLAYS HAVE 3 RETURNS TO THE USER FROM ASTRONAUT RESPONSES.  A TERMINATE (V34) BRANCHES>[9d2084a3]
+   F<78:#	7.  ALL FLASHING DISPLAYS HAVE 3 RETURNS TO THE USER FROM ASTRONAUT RESPONSE>[]
+38 38 37 False
+   T<38:#				...	...		RETURN TO USER>[221cae80]
+   T<37:#				......		RETURN TO USER>[221cae80]
+80 80 24 False
+   T<80:## about getting access to the (much) higher-quality images which Paul>[e495df99]
+   T<24:## abouth Paul>[e495df99]
+61 61 31 False
+   T<61:		TC	RRDESEND	# VB44 TERMINATE CONTINUOUS DESIGNATE>[e4315184]
+   F<31:		TC	RRDESEND	# VB44 TERMINATE >[]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+24 24 16 False
+   T<24:		TS	LST2 +15D>[e7b0dd64]
+   F<16:		TS	LST7b0dd64]>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+41 41 8 False
+   T<41:#	7.	BVSU	VECTOR SUBTRACT FROM.>[56b521dc]
+   F<0:>[]
+21 21 8 False
+   T<21:		MP	BUF +1>[1043a168]
+   F<0:>[]
+37 37 8 False
+   T<37:		DXCH	MPAC		# A(N) TO MPAC>[711c3bfd]
+   F<0:>[]
+44 44 16 False
+   T<44:#	GAMMA = SCALAR FOR INCORPORATION>[56ad4a81]
+   F<16:#	GAMMA = SCA81]>[]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+45 45 29 False
+   T<45:# ERASABLE INITIALIZATION REQUIRED:>[7b98e251]
+   T<29:# ERASABLE INITIAD:>[7b98e251]
+36 36 8 False
+   T<36:# JOBS OR TASKS INITIATED_>[91e43527]
+   F<0:>[]
+69 69 8 False
+   T<69:S41.1		MXV	VSL1		# CONVERT VECTOR IN MPAC FROM REF AT 2(+7)>[386c67fe]
+   F<0:>[]
+47 47 31 False
+   T<47:##				and corrected the errors found.>[876f1b40]
+   T<31:##				anerrors found.>[876f1b40]
+47 47 20 False
+   T<47:VERBTAB		CADR	GODSPALM	# VB00 ILLEGAL>[1e50c4ab]
+   F<20:VERBTAB		CADR	GODSPA>[]
+32 32 18 False
+   T<32:			8D		# 10-11D=WEARTH>[138b4b93]
+   F<18:			8D		# 10-11D=WE>[]
+23 23 8 False
+   T<23:		TCF	C*MM*N3>[e45c905f]
+   F<0:>[]
+15 15 8 False
+   T<15:			0D>[171c5213]
+   F<0:>[]
+121 121 89 False
+   T<121:# ERASABLE INITIALIZATION:  FRESH START AND RESTART SET BIT 15 OF CHANNEL 12 AND BITS 2 AND 7 OF IMODES30 TO 0,>[02390fe2]
+   T<89:# ERASABAND RESTART SET BIT 15 OF CHANNEL 12 AND BITS 2 AND 7 OF IMODES30 TO 0,>[02390fe2]
+67 67 44 False
+   T<67:POSALPH		TS	ITEMP2			# STORE -ABS(.4*AOS) SCALED AT PI/8.>[d1af7803]
+   F<44:POSALPH		TS	ITEMP2			# STORE -ABS(.4*AOS) SC>[]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           25 	         101
+Error bytes.....>         1183	        4754
+Error percent...>         0.05 %	        0.05 %
+Error ppm.......>       533.58 ppm	      536.06 ppm
+----------------------------------------
+runend: 2021-07-21 20:09:18.635860
+runtime: 0:15:28.930031

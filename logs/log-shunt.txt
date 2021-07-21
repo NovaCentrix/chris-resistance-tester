@@ -1,0 +1,329 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-21 16:03:06.228675
+----------------------------------------
+43 43 8 False
+   T<43:		DEC	-.17670		# B             ''>[b77a3d63]
+   F<0:>[]
+17 17 13 False
+   T<17:		STADR>[740fbba5]
+   F<13:		STADR[740fb>[]
+19 19 11 False
+   T<19:		DSQ	DMP>[4eef7ebc]
+   F<11:		DSQ	DMbc]>[]
+25 25 8 False
+   T<25:		EBANK=	DVCNTR>[b8a20206]
+   F<0:>[]
+40 40 8 False
+   T<40:#				...	...		TERMINATE RETURN>[daaa6c72]
+   F<0:>[]
+26 26 8 False
+   T<26:		ADRES	MRKNVFLG>[c5640363]
+   F<0:>[]
+21 21 8 False
+   T<21:A		EQUALS	0>[b9dbd0ec]
+   F<0:>[]
+59 59 58 False
+   T<59:NNTYPTEM	ERASE			# TEMP FOR NOUN TYPE TABLE ENTRY>[e3025b24]
+   F<58:NNTYPTEM	ERASE			# TEMP FOR NOUN TYPE TABLE ENTRY[e3025b24>[]
+71 71 32 False
+   T<71:TARGETDB	EQUALS	-RATEDB		# MAN. CONTROL TARGET DB COMPLEMENT.>[5789c56e]
+   T<32:TARGETDB	EQUALS	-RANT.>[5789c56e]
+30 30 14 False
+   T<30:UNFVZ/2		=	UNFV/2 +4>[51ea970d]
+   F<14:UNFVZ/2	a970d]>[]
+54 54 24 False
+   T<54:			ZEROVECS	# IN CASE SIN WAS SLIGHTLY > 1/2>[a0af873c]
+   F<24:			ZEROVECS	# IN CASE SI>[]
+56 56 29 False
+   T<56:FINALBIT	=	BIT6			#	COMPUTATIONS		COMPUTATIONS>[f3337e1f]
+   F<29:FINALBIT	=	BIT6			#	COMPUTAT]>[]
+39 39 31 False
+   T<39:		CA	Q		# NOW FRACTIONAL PART>[194e6bce]
+   T<31:		CA	Q		ACTIONAL PART>[194e6bce]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+24 24 16 False
+   T<24:		DAS	MPAC 	+3>[0e0280ca]
+   F<16:		DAS	MPe0280ca]>[]
+27 27 17 False
+   T<27:		TCF	ENDTPUSH +2>[61cf2e98]
+   F<17:		TCF	EN61cf2e98]>[]
+56 56 12 False
+   T<56:P67NOW?		TC	CHECKMM		# NO:  ARE WE IN P67 NOW?>[1ad249f3]
+   F<12:P67NOW?	9f3]>[]
+47 47 40 False
+   T<47:##				and corrected the errors found.>[876f1b40]
+   T<40:##				ancted the errors found.>[876f1b40]
+42 42 8 False
+   T<42:		TC	GOTOV56		# AND EXIT VIA V56>[fc61095a]
+   F<0:>[]
+34 34 26 False
+   T<34:#		A THRUSTING MANEUVER.>[38497147]
+   T<26:#		A THRANEUVER.>[38497147]
+20 20 8 False
+   T<20:			CALOOP1>[d3433251]
+   F<0:>[]
+29 29 8 False
+   T<29:P70INIT		TC	INTPRET>[1f0e7a5f]
+   F<0:>[]
+38 38 8 False
+   T<38:					# DSPLIST IS NOT EMPTY.>[443faa41]
+   F<0:>[]
+23 23 8 False
+   T<23:		VLOAD	VCOMP>[191aef4c]
+   F<0:>[]
+124 124 84 False
+   T<124:# ORATED BY THE LAST PASS (BECAUSE IT WENT AWAY AT JUST THE RIGHT TIME), BUT THE DAP MASK-WORDS WILL BE INCORRECT.>[a75e8bd6]
+   T<84:# ORATEDAT JUST THE RIGHT TIME), BUT THE DAP MASK-WORDS WILL BE INCORRECT.>[a75e8bd6]
+81 81 73 False
+   T<81:# LRHTASK IS A WAITLIST TASK SET BY READACCS DURING THE DESCENT BRAKING>[31aee919]
+   T<73:# LRHTASAITLIST TASK SET BY READACCS DURING THE DESCENT BRAKING>[31aee919]
+49 49 9 False
+   T<49:		TS	LRLCTR		# SET L,M,R, ANS S TO ZERO>[fd56c1a7]
+   F<0:>[]
+21 21 8 False
+   T<21:		TC	DSPOUT>[019030c6]
+   F<0:>[]
+29 29 13 False
+   T<29:		TCF	+2		# PROCEED>[563e198e]
+   F<13:		TCF	+2198e]>[]
+27 27 11 False
+   T<27:BGIM		OCTAL	07400>[8bd42f0b]
+   F<11:BGIM		OCTAL>[]
+77 77 11 False
+   T<77:##		2009-06-07 RSB	Added an SBANK= to account for incompatibilities>[249b353e]
+   F<11:##		20093e]>[]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           31 	          31
+Error bytes.....>         1258	        1258
+Error percent...>         0.06 %	        0.06 %
+Error ppm.......>       567.40 ppm	      567.40 ppm
+----------------------------------------
+runend: 2021-07-21 16:18:38.020497
+runtime: 0:15:31.791822
+========================================================================
+Run # 1
+runbeg: 2021-07-21 16:18:38.020603
+----------------------------------------
+58 58 26 False
+   T<58:		BZMF	NETNEG		# ANET LESS THAN AMIN, SO FAKE IT>[fd2fbede]
+   T<26:		BZMF	N FAKE IT>[fd2fbede]
+80 80 24 False
+   T<80:## available online at www.ibiblio.org/apollo.  If for some reason you>[56230902]
+   F<24:## available online at ]>[]
+38 38 8 False
+   T<38:# 81	UPDATE CSM STATE VECTOR>[1f2cf447]
+   F<0:>[]
+22 22 18 False
+   T<22:## Page 1371>[52c063b7]
+   F<18:## Page 1371[52c06>[]
+42 42 36 False
+   T<42:HCALC1		EQUALS	DELVROD +6	# I(2)>[d0a7e6cf]
+   T<36:HCALC1			DELVROD +6	# I(2)>[d0a7e6cf]
+27 27 8 False
+   T<27:		SETLOC	KALCMON1>[93c64c7a]
+   F<0:>[]
+27 27 8 False
+   T<27:		COUNT*	$$/INTER>[b5079cd7]
+   F<0:>[]
+83 83 59 False
+   T<83:## the Museum.  Many thanks to both.  The images (with suitable reduction>[3bd49480]
+   T<59:## the Moth.  The images (with suitable reduction>[3bd49480]
+121 121 119 False
+   T<121:# (IT IS RECOMMENDED THAT THE 'ERROR LIGHT RESET' CODE IS PRECEEDED BY 16 BITS THE FIRST OF WHICH IS 1 FOLLOWED>[f82c8d6d]
+   T<119:# (IT IS RECOMMENDED THAT THE 'ERROR LIGHT RESET' CODE IS PRECEEDED BY 16 BITS THE RST OF WHICH IS 1 FOLLOWED>[f82c8d6d]
+66 66 63 False
+   T<66:## Filename:	LUNAR_AND_SOLAR_EPHEMERIDES_SUBROUTINES.agc>[3d2d37ee]
+   F<63:## Filename:	LUNAR_AND_SOLAR_EPHEMERIDES_SUBROUTINES.agc[3d2d37>[]
+64 64 11 False
+   T<64:		PDDL	VDEF		# FORM (0,VG ,VG ) IN UNITS OF 2(10) M/CS>[2713d592]
+   F<11:		PDDL	VDEF>[]
+62 62 61 False
+   T<62:		NORM	BDDV		# FORM NORMALIZED QUOTIENT ALPHAM/BETAM>[ab82950d]
+   F<61:		NORM	BDDV		# FORM NORMALIZED QUOTIENT ALPHAM/BETAM[ab82950d>[]
+23 23 19 False
+   T<23:#	TC	BANKCALL>[c5ca5bf9]
+   F<19:#	TC	BANKCALL[c5ca5>[]
+49 49 25 False
+   T<49:		TS	DATAGOOD	# ZERO OUT DATA INDICATOR>[05eeb634]
+   T<25:		TS	DATDICATOR>[05eeb634]
+12 12 8 False
+   T<12:##>[5d1714ec]
+   F<0:>[]
+23 23 21 False
+   T<23:		TC	FLASHOFF>[cf15dc19]
+   F<21:		TC	FLASHOFF[cf15dc1>[]
+39 39 8 False
+   T<39:		TC	Q		# NOT IN G+N	C(A) = +>[e6df2c76]
+   F<0:>[]
+63 63 47 False
+   T<63:DVCNTSET	CAF	ONE		# ALLOW TWO PASSES MAXIMUM NOW THAT>[c33339f2]
+   T<47:DVCNTSETW TWO PASSES MAXIMUM NOW THAT>[c33339f2]
+56 56 11 False
+   T<56:		TC	COPYCYC +1	# DO NOT COPY MASS IN NORMLIZE>[96460cb7]
+   F<11:		TC	COPYCY>[]
+25 25 8 False
+   T<25:AOTMARK1	EQUALS>[87dd75b8]
+   F<0:>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           21 	          52
+Error bytes.....>          990	        2248
+Error percent...>         0.04 %	        0.05 %
+Error ppm.......>       446.53 ppm	      506.96 ppm
+----------------------------------------
+runend: 2021-07-21 16:34:05.515263
+runtime: 0:15:27.494660
+========================================================================
+Run # 2
+runbeg: 2021-07-21 16:34:05.515374
+----------------------------------------
+21 21 13 False
+   T<21:		DLOAD	DSU>[4aabc2a0]
+   F<13:		DLOAD	c2a0]>[]
+31 31 8 False
+   T<31:#		INTERRUPT LEAD INS>[3399ae48]
+   F<0:>[]
+27 27 8 False
+   T<27:		2DEC	.100000392>[257abb8d]
+   F<0:>[]
+54 54 28 False
+   T<54:#		BIT 2		ALTITUDE RATE OR ALTITIDE SELECTOR>[1b2ec256]
+   F<28:#		BIT 2		ALTITUDE RATE OR A>[]
+17 17 9 False
+   T<17:		TS	X1>[17bdeecb]
+   F<0:>[]
+25 25 10 False
+   T<25:		INHINT			# GO>[49b35095]
+   F<10:		INHINT		>[]
+59 59 16 False
+   T<59:		MASK	RADMODES	# SHOWING SOME RADAR DATA FAILED.>[308f4c1e]
+   F<16:		MASK	RADMODES	>[]
+20 20 8 False
+   T<20:			CULTRIX>[778ce285]
+   F<0:>[]
+83 83 8 False
+   T<83:## the Museum.  Many thanks to both.  The images (with suitable reduction>[3bd49480]
+   F<0:>[]
+20 20 10 False
+   T<20:		CAF	ZERO>[9e4c061e]
+   F<10:		CAF	ZERO>[]
+49 49 23 False
+   T<49:		CADR	MODROUTB	# GO THRU STANDARD LOC.>[9f557c1c]
+   F<23:		CADR	MODROUTB	# GO TH>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+16 16 12 False
+   T<16:		BANK>[546c1fc8]
+   F<12:		BANK[546c1>[]
+11 11 8 False
+   T<11:#>[70659eff]
+   F<0:>[]
+60 60 50 False
+   T<60:		TCF	ZEROOT		# NEGATIVE.  USE ZERO FOR 1/2 POWER.>[bbcfc314]
+   T<50:		TCF	ZEGATIVE.  USE ZERO FOR 1/2 POWER.>[bbcfc314]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           15 	          67
+Error bytes.....>          503	        2751
+Error percent...>         0.02 %	        0.04 %
+Error ppm.......>       226.87 ppm	      413.60 ppm
+----------------------------------------
+runend: 2021-07-21 16:49:29.582778
+runtime: 0:15:24.067404
+========================================================================
+Run # 3
+runbeg: 2021-07-21 16:49:29.582853
+----------------------------------------
+44 44 36 False
+   T<44:		MP	SIX		# GET C(L) = -6 MARKCNTR>[8bdd63c4]
+   T<36:		MP	SIXC(L) = -6 MARKCNTR>[8bdd63c4]
+22 22 8 False
+   T<22:		CAF	EBANK7>[d405db80]
+   F<0:>[]
+37 37 29 False
+   T<37:#	( B  )	   =      M	( A  )>[b64de7dd]
+   T<29:#	( B  )   M	( A  )>[b64de7dd]
+31 31 8 False
+   T<31:		TCF	DISPCHNG	# (11)>[028dbf57]
+   F<0:>[]
+124 124 57 False
+   T<124:# INTRODUCING ANY CODING CHANGES, ACCEPTING THE INHERENT SCALE FACTOR CHANGES IN POSITION AND VELOCITY.  AN ITERA->[38d1d182]
+   T<57:# INTRODES IN POSITION AND VELOCITY.  AN ITERA->[38d1d182]
+34 34 10 False
+   T<34:# PARAMETERS OF NO USE ->[b7e6c042]
+   F<10:# PARAME2]>[]
+79 79 15 False
+   T<79:#	REQUIRED BEFORE ANYTHING IS ACTUALLY DISPLAYED ON THE ERROR METERS.>[122c526b]
+   F<15:#	REQUIR2c526b]>[]
+54 54 18 False
+   T<54:		CAF	ZERO		# *** 205 ONLY MARKBRAN USERS IN>[5b837f59]
+   F<18:		CAF	ZERO		# *** >[]
+54 54 9 False
+   T<54:		CAF	LRPOSCAL	#	BIT 3	RR RANGE LOW SCALE =0>[63b97292]
+   F<0:>[]
+36 36 28 False
+   T<36:### FILE="Main.annotation">[2e7cc7b3]
+   T<28:### FILEnnotation">[2e7cc7b3]
+21 21 13 False
+   T<21:			INCORPEX>[d4f3f95f]
+   F<13:			INCORf95f]>[]
+101 101 74 False
+   T<101:#	00002 - ERROR EXIT 2 - RR LOS NOT WITHIN THREE DEGREES OF LOS COMPUTED FROM STATE VECTORS>[d62c9303]
+   F<74:#	00002 - ERROR EXIT 2 - RR LOS NOT WITHIN THREE DEGREES OF LOS COMPUTED F>[]
+18 18 8 False
+   T<18:			QTEMP>[d10b8140]
+   F<0:>[]
+51 51 49 False
+   T<51:# PROGRAM DESCRIPTION S40.1		DATE 15NOV66>[4e1f74ef]
+   T<49:# PROGRADESCRIPTION S40.1		DATE 15NOV66>[4e1f74ef]
+114 114 55 False
+   T<114:#	USING THE BDT VECTOR) COMPUTES THE TIME FOR ISSUING THE ENGINE OFF COMMAND, TGO, AND CALLS THE ROUTINE>[80363343]
+   T<55:#	USING F COMMAND, TGO, AND CALLS THE ROUTINE>[80363343]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+101 101 80 False
+   T<101:# MOD NO: 5	MOD BY: RR BAIRNSFATHER		DATE: 6 AUG 68		OVFL CK FOR HAPO & HPER. VOIDS MOD #2.>[4e23592b]
+   T<80:# MOD NO: 5HER		DATE: 6 AUG 68		OVFL CK FOR HAPO & HPER. VOIDS MOD #2.>[4e23592b]
+49 49 8 False
+   T<49:					# DO NOT DESTROY VALUE OF PIPTIME1>[3328ccfc]
+   F<0:>[]
+19 19 8 False
+   T<19:		INDEX	Q>[1f9c11cd]
+   F<0:>[]
+38 38 8 False
+   T<38:#	1. JET SENSE TEST (SPSRCS)>[5ec18112]
+   F<0:>[]
+75 75 66 False
+   T<75:#	(4)  DELVLVC	DELTA VELOCITY AT MID - LOCAL VERTICAL COORDINATES>[2f53bf6d]
+   T<66:#	(4)  DLTA VELOCITY AT MID - LOCAL VERTICAL COORDINATES>[2f53bf6d]
+59 59 8 False
+   T<59:		CCS	A		# UNTIL THE CURRENT 90 SEC WAIT EXPIRES.>[31df18c9]
+   F<0:>[]
+55 55 39 False
+   T<55:		TCF	FUNCT2		# POSITIVE DEL VALUE.  PROCEED.>[c9197e32]
+   T<39:		TCF	FU DEL VALUE.  PROCEED.>[c9197e32]
+21 21 8 False
+   T<21:		XCH	BBANK>[3f2e6eee]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           24 	          91
+Error bytes.....>         1255	        4006
+Error percent...>         0.06 %	        0.05 %
+Error ppm.......>       566.05 ppm	      451.71 ppm
+----------------------------------------
+runend: 2021-07-21 17:04:58.172797
+runtime: 0:15:28.589944

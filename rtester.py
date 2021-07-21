@@ -1,0 +1,283 @@
+#!/usr/bin/env python3
+
+import sys, signal
+import serial
+import time
+import binascii
+import string
+import datetime as dt
+
+def ttsend( size, baud ):
+  tbit = 1.0 / baud
+  tbyte = 10.0 * tbit
+  return size * tbyte
+
+def tf(flag):
+  if flag: return 'T'
+  else: return 'F'
+
+def check_hex(text):
+  bytes_hexdigits = bytes(string.hexdigits,'latin_1')
+  for ch in text:
+    if ch not in string.hexdigits: 
+      return False
+  return True
+
+class Packet:
+  def __init__(self):
+    self.payload = ''
+    self.size = 0
+    self.crc='[]'
+    self.valid = False
+  def __eq__(a,b):
+    return a.payload == b.payload and a.size == b.size and a.crc == b.crc
+  def __str__(self):
+    return f'{tf(self.valid)}<{self.size}:{self.payload}>{self.crc}'
+  def __repr__(self):
+    return f'{tf(self.valid)}<{self.size}:{self.payload}>{self.crc}'
+  def generate(self, payload):
+    self.payload = payload
+    self.crc = '['+hex(binascii.crc32(bytes(self.payload,'latin_1')))[2:].zfill(8)+']'
+    self.packet = self.payload + self.crc
+    self.size = len(self.packet)
+    self.valid = True
+
+  def crc_valid_format(self, text):
+    """Check if the 8 bytes of CRC are proper format."""
+    if text[0] != '[': return False
+    if text[9] != ']': return False
+    if not check_hex(text[1:-1]): return False
+    return True
+    
+  def parse(self, packet):
+    if len(packet) < 10:
+      # minimum packet size is size of CRC
+      self.payload = ''
+      self.size = 0
+      self.crc='[]'
+      self.valid = False
+    else: 
+      crcmaybe = packet[-10:]
+      if self.crc_valid_format(crcmaybe):
+        self.crc = crcmaybe
+        self.payload = packet[0:-10]
+        self.size = len(packet)
+        self.valid = True
+      else:
+        self.crc='[]'
+        self.payload = packet
+        self.size = len(packet)
+        self.valid = False
+
+class Corpus:
+  def __init__( self, fname='source.agc' ):
+    self.source = []
+    self.fname = fname
+    fp = open( self.fname, 'r' )
+    if fp is None:
+      print('Error opening file:', e)
+      return
+    # count the lines,
+    # find maximum length
+    self.maxlen = 0
+    self.nlines = 0
+    self.nbytes = 0
+    self.n8bits = 0
+    for line in fp:
+      self.source.append( line.rstrip() )
+      lenline = len(line)
+      self.nbytes += lenline
+      self.nlines += 1
+      if lenline > self.maxlen: self.maxlen = lenline
+      ##  for ch in line:
+      ##    val = ch.encode('latin_1')
+      ##    val = int.from_bytes( val, 'little' )
+      ##    if val & 0x80: self.n8bits += 1
+    print('nbytes:', self.nbytes)
+    print('nlines:', self.nlines)
+    print('maxlen:', self.maxlen)
+    print('ttsend:', ttsend(self.nbytes, 115200))
+    print('n8bits:', self.n8bits)
+    fp.close()
+
+
+class Port:
+  def __init__(self, portname='/dev/serial0', baud=115200):
+    self.portname = portname
+    self.baud = baud
+    self.timeout = 0.5
+    self.port = serial.Serial(
+          self.portname, 
+          baudrate = self.baud,
+          timeout = self.timeout
+        )
+    print(self.port.name)
+    self.port.reset_input_buffer()
+    self.port.reset_output_buffer()
+
+  def send( self, message ):
+    return self.port.write( bytes(message, 'latin_1') )
+
+  def recv( self, size ):
+    buff = self.port.read( size )
+    return buff.decode('latin_1')
+
+class Logger:
+  def __init__(self, fname):
+    self.ready = False
+    self.fp = open(fname, 'w')
+    if self.fp is None: return
+    self.ready = True
+  def __bool__(self):
+    return self.ready
+  def separator_major(self):
+    print('========================================================================', file=self.fp)
+  def separator_minor(self):
+    print('----------------------------------------', file=self.fp)
+  def run_beg(self, descr):
+    if not self.ready: return
+    self.separator_major()
+    print(descr, file=self.fp)
+    self.t0 = dt.datetime.now()
+    print('runbeg:', self.t0, file=self.fp)
+    self.separator_minor()
+  def run_end(self):
+    if not self.ready: return
+    self.t1 = dt.datetime.now()
+    runtime = str(self.t1-self.t0)
+    self.separator_minor()
+    print('runend:', self.t1, file=self.fp)
+    print('runtime:', runtime, file=self.fp)
+  def close(self):
+    if not self.ready: return
+    self.fp.close()
+
+class Counter:
+  def __init__(self):
+    self.reset()
+  def reset(self):
+    self.pkts=0
+    self.bytes=0
+  def accum(self, pkts, _bytes):
+    self.pkts += pkts
+    self.bytes += _bytes
+
+class Tally:
+  def __init__(self):
+    self.all = Counter()
+    self.err = Counter()
+  def reset(self):
+    self.all.reset()
+    self.err.reset()
+
+class Totals:
+  def __init__(self):
+    self.prg = Tally()
+    self.run = Tally()
+  def all_accum(self, pkts, _bytes):
+    self.prg.all.accum( pkts, _bytes)
+    self.run.all.accum( pkts, _bytes)
+  def err_accum(self, pkts, _bytes):
+    self.prg.err.accum( pkts, _bytes)
+    self.run.err.accum( pkts, _bytes)
+  def run_reset(self):
+    self.run.all.reset()
+    self.run.err.reset()
+
+def main():
+
+  c = Corpus()
+  p = Port()
+  px = Packet()
+  pr = Packet()
+  retry = 10
+
+  totals = Totals() # tally of data and errors
+
+  logger = Logger('logfile.txt')
+  if not logger:
+    print('error opening logfile')
+    exit(99)
+
+  for run in range(4):
+    logger.run_beg(f'Run # {run}')
+    totals.run.reset()
+
+    for i,line in enumerate(c.source):
+      time.sleep(0.005)
+      px.generate(line)
+      nsent = p.send(px.packet)
+      totals.all_accum( 1, px.size )
+      buff = p.recv(nsent)
+      pr.parse(buff)
+      match = px == pr
+      if not match:
+        totals.err_accum( 1, px.size )
+        print(px.size, nsent, len(buff), pr==px, file=logger.fp)
+        print('  ', px, file=logger.fp)
+        print('  ', pr, file=logger.fp)
+      if i % 1000 == 0:
+        print(f'Run {run}: '
+              f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
+              f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}')
+    print(f'Run {run} Completed')
+    prg_error = float(totals.prg.err.bytes) / float(totals.prg.all.bytes)
+    prg_error100 = prg_error * 100.0
+    prg_error1e6 = prg_error * 1.0e6
+    run_error = float(totals.run.err.bytes) / float(totals.run.all.bytes)
+    run_error100 = run_error * 100.0
+    run_error1e6 = run_error * 1.0e6
+    logger.separator_minor()
+    print(f'Total packets...> {totals.run.all.pkts:12} \t{totals.prg.all.pkts:12}',  file=logger.fp )
+    print(f'Total bytes.....> {totals.run.all.bytes:12}\t{totals.prg.all.bytes:12}', file=logger.fp )
+    print(f'Error packets...> {totals.run.err.pkts:12} \t{totals.prg.err.pkts:12}',  file=logger.fp )
+    print(f'Error bytes.....> {totals.run.err.bytes:12}\t{totals.prg.err.bytes:12}', file=logger.fp )
+    print(f'Error percent...> {run_error100:12.2f} %\t{prg_error100:12.2f} %', file=logger.fp )
+    print(f'Error ppm.......> {run_error1e6:12.2f} ppm\t{prg_error1e6:12.2f} ppm', file=logger.fp )
+    logger.run_end()
+
+  logger.close()
+
+
+def main2():
+  """Main2: for manual ops, xmts, summary on screen, no logging"""
+
+  c = Corpus()
+  p = Port()
+  px = Packet()
+  pr = Packet()
+  retry = 10
+
+  totals = Totals() # tally of data and errors
+
+  for i,line in enumerate(c.source):
+    time.sleep(0.005)
+    px.generate(line)
+    nsent = p.send(px.packet)
+    totals.all_accum( 1, px.size )
+    buff = p.recv(nsent)
+    pr.parse(buff)
+    match = px == pr
+    if not match:
+      totals.err_accum( 1, px.size )
+      print(px.size, nsent, len(buff), pr==px)
+      print('  ', px)
+      print('  ', pr)
+    print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
+           f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
+           end='\r')
+
+  run_error = float(totals.run.err.bytes) / float(totals.run.all.bytes)
+  run_error100 = run_error * 100.0
+  run_error1e6 = run_error * 1.0e6
+  print('Completed')
+  print(f'Total packets...> {totals.run.all.pkts:12}')
+  print(f'Total bytes.....> {totals.run.all.bytes:12}')
+  print(f'Error packets...> {totals.run.err.pkts:12}')
+  print(f'Error bytes.....> {totals.run.err.bytes:12}')
+  print(f'Error percent...> {run_error100:12.2f} %')
+  print(f'Error ppm.......> {run_error1e6:12.2f} ppm')
+
+
+if __name__ == "__main__":
+  main()

@@ -250,34 +250,24 @@ def main2():
 
   totals = Totals() # tally of data and errors
 
-  for i,line in enumerate(c.source):
-    time.sleep(0.005)
-    px.generate(line)
-    nsent = p.send(px.packet)
-    totals.all_accum( 1, px.size )
-    buff = p.recv(nsent)
-    pr.parse(buff)
-    match = px == pr
-    if not match:
-      totals.err_accum( 1, px.size )
-      print(px.size, nsent, len(buff), pr==px)
-      print('  ', px)
-      print('  ', pr)
-    print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
-           f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
-           end='\r')
-
-  run_error = float(totals.run.err.bytes) / float(totals.run.all.bytes)
-  run_error100 = run_error * 100.0
-  run_error1e6 = run_error * 1.0e6
-  print('Completed')
-  print(f'Total packets...> {totals.run.all.pkts:12}')
-  print(f'Total bytes.....> {totals.run.all.bytes:12}')
-  print(f'Error packets...> {totals.run.err.pkts:12}')
-  print(f'Error bytes.....> {totals.run.err.bytes:12}')
-  print(f'Error percent...> {run_error100:12.2f} %')
-  print(f'Error ppm.......> {run_error1e6:12.2f} ppm')
+  while True:
+    for i,line in enumerate(c.source):
+      time.sleep(0.005)
+      px.generate(line)
+      nsent = p.send(px.packet)
+      totals.all_accum( 1, px.size )
+      buff = p.recv(nsent)
+      pr.parse(buff)
+      match = px == pr
+      if not match:
+        totals.err_accum( 1, px.size )
+        print(px.size, nsent, len(buff), pr==px)
+        print('  ', px)
+        print('  ', pr)
+      print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
+             f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
+             end='\r')
 
 
-if __name__ == "__main__":
-  main()
+#if __name__ == "__main__":
+#  main()

@@ -34,7 +34,7 @@ def main(argv):
   # and configured for screenshots
 
   print('=== Initializing TraceR Module ===')
-  Tracer.init_serial('/dev/ttyACM1')
+  Tracer.init_serial('/dev/ttyACM0')
   if init_comms:
     if not Tracer.init_comm_link():
       print('failed to initialize TraceR comm link')
@@ -52,7 +52,7 @@ def main(argv):
   print('TraceR:', tr.ident.lower(), tr.which)
   
   print('=== Sweeping TraceR Resistance ===')
-  for rcmd in range(0,300,25):
+  for rcmd in range(10,270):
 
     tr.command(Tracer.OHMS, rcmd)
     print('# rcmd, ohms:', rcmd, tr.ohms)

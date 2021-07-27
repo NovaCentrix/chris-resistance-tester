@@ -1,0 +1,245 @@
+========================================================================
+Run # 0
+runbeg: 2021-07-27 11:50:11.695375
+----------------------------------------
+46 46 39 False
+   T<46:		CA	ACCSW		# U AXIS 	STORE U VALUES>[ee681366]
+   T<39:		CA	ACCSW		# U AXIS 	STOLUES>[ee681366]
+68 68 34 False
+   T<68:VB97DEX		=	OCT35		# NEGATIVE OF THIS IS PROPER FOR DISPDEX>[f151272a]
+   F<34:VB97DEX		=	OCT35		# NEGATIVE1272a]>[]
+35 35 15 False
+   T<35:		PDDL	DMP		#				PL AT 2D>[7db25ae2]
+   F<15:		PDDL	DMP		#		>[]
+70 70 36 False
+   T<70:GOPERF2		TS	PLAYTEM1	# DESIRED VERB-NOUN TO DISPLAY R1,R2,R3>[7706807c]
+   F<36:GOPERF2		TS	PLAYTEM1	# DESIRED VERB->[]
+71 71 47 False
+   T<71:#			INTERSECT 300 KFT ABOVE PAD OR 35KFT ABOVE LANDING SITE).>[86d03f0a]
+   T<47:#			INTEOR 35KFT ABOVE LANDING SITE).>[86d03f0a]
+21 21 8 False
+   T<21:## Page 908>[126aee4e]
+   F<0:>[]
+61 61 48 False
+   T<61:		CA	ADIAZ		# (GYRO PULSES)/(PIPA PULSE) X 2(-6)		*>[b9954c9e]
+   T<48:		CA	ADIULSES)/(PIPA PULSE) X 2(-6)		*>[b9954c9e]
+38 38 19 False
+   T<38:# A SUPPLIED OPERATION CODE.>[cec8e240]
+   T<19:# A SUPP.>[cec8e240]
+124 124 48 False
+   T<124:# ****************************************************************************************************************>[69cba30f]
+   T<48:# ************************************>[69cba30f]
+83 83 34 False
+   T<83:# 	STARTUP THROUGH ACQUISITION AND LOCKON TO THE CSM AND TO UPDATE EITHER>[6360441c]
+   T<34:# 	STARTTO UPDATE EITHER>[6360441c]
+51 51 33 False
+   T<51:		TC	LUNSFCHK	# CHECK IF ON LUNAR SURFACE>[66e45d43]
+   F<33:		TC	LUNSFCHK	# CHECK IF ON LUNAR>[]
+28 28 18 False
+   T<28:# W-MATRIX MONITOR>[278b3bc7]
+   F<18:# W-MATRIX MONITO]>[]
+47 47 45 False
+   T<47:		CS	TIME1		# SET TBASE TO BEGIN WITH>[36e05310]
+   T<45:		CS	TIM		# SET TBASE TO BEGIN WITH>[36e05310]
+40 40 38 False
+   T<40:		OCT	0			# 87	SPARE COMPONENT>[47326055]
+   F<38:		OCT	0			# 87	SPARE COMPONENT[4732605>[]
+10 10 8 False
+   T<10:>[00000000]
+   F<0:>[]
+52 52 37 False
+   T<52:		STODL	TFFX		# NUM=Q2-Q1  E:(-16) M:(-15)>[d3588079]
+   F<37:		STODL	TFFX		# NUM=Q2-Q1  E:(-16) M:>[]
+----------------------------------------
+Total packets...>        65614 	       65614
+Total bytes.....>      2217118	     2217118
+Error packets...>           16 	          16
+Error bytes.....>          845	         845
+Error percent...>         0.04 %	        0.04 %
+Error ppm.......>       381.13 ppm	      381.13 ppm
+----------------------------------------
+runend: 2021-07-27 12:05:33.357789
+runtime: 0:15:21.662414
+========================================================================
+Run # 1
+runbeg: 2021-07-27 12:05:33.357880
+----------------------------------------
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+32 32 8 False
+   T<32:6SEC(18)	2DEC	600 B-18>[02f2c8e7]
+   F<0:>[]
+83 83 71 False
+   T<83:# 62	ABSOLUTE VALUE OF VELOCITY		3COMP	XXXX.X FT/SEC				NO LOAD, DEC ONLY>[443aef4b]
+   T<71:# 62	ABSOF VELOCITY		3COMP	XXXX.X FT/SEC				NO LOAD, DEC ONLY>[443aef4b]
+99 99 98 False
+   T<99:# ACCORDING TO THE NEEDS OF THE PARTICULAR USER.  THE ABORT EXIT MODE MAY BE CODED AS ...>[12673a1f]
+   T<98:# ACCORDNG TO THE NEEDS OF THE PARTICULAR USER.  THE ABORT EXIT MODE MAY BE CODED AS ...>[12673a1f]
+110 110 79 False
+   T<110:# TO WAKE UP A JOB, EACH CORE SET IS FOUND TO LOCATE ALL JOBS WHICH ARE ASLEEP.  IF THE FCADR IN THE>[ba359fa3]
+   T<79:# TO WAKE UP A JOB, EACH CORE SWHICH ARE ASLEEP.  IF THE FCADR IN THE>[ba359fa3]
+21 21 8 False
+   T<21:			TSTRLSRM>[6939bf33]
+   F<0:>[]
+45 45 8 False
+   T<45:## Website:	www.ibiblio.org/apollo.>[ebdec6a7]
+   F<0:>[]
+56 56 38 False
+   T<56:			RVARMIN		# SHIFT TO TRIPLE PRECISION (B-40)>[15820095]
+   F<38:			RVARM# SHIFT TO TRIPLE PRECISION (B>[]
+80 80 47 False
+   T<80:## about getting access to the (much) higher-quality images which Paul>[e495df99]
+   T<47:## about getting access to thich Paul>[e495df99]
+38 38 8 False
+   T<38:		UNIT			# UT = UNIT (VGTIG)>[21dcd432]
+   F<0:>[]
+82 82 69 False
+   T<82:# TFF (TIME TO INTERSECT 300 KFT ABOVE PAD OR 35KFT ABOVE LANDING SITE).>[eb953736]
+   F<69:# TFF (TIME TO INTERSECT 300 KFT ABOVE PAD OR 35KFT ABOVE LANDING SIT>[]
+16 16 8 False
+   T<16:			MIS>[4d4e3701]
+   F<0:>[]
+47 47 40 False
+   T<47:##				and corrected the errors found.>[876f1b40]
+   T<40:##				ancted the errors found.>[876f1b40]
+39 39 28 False
+   T<39:			S34/35.1	# GET UNIT NORMAL>[41d38c6f]
+   T<28:			S34/35.T NORMAL>[41d38c6f]
+93 93 71 False
+   T<93:# OUTPUT:  ISS CAGED, COUNTERS ZEROED, PULSE TRAINS TERMINATED AND NO ATT LAMP LIT.>[dd91ee7e]
+   T<71:# OUTPUT ZEROED, PULSE TRAINS TERMINATED AND NO ATT LAMP LIT.>[dd91ee7e]
+118 118 108 False
+   T<118:# CALLING SEQUENCE:  GPMATRIX IS TRANSFERRED TO FROM DAPT4S AND IS THUS EXECUTED 4 TIMES A SECOND BY T4RUPT.>[68f51148]
+   F<108:# CALLING SEQUENCE:  GPMATRIX IS TRANSFERRED TO FROM DAPT4S AND IS THUS EXECUTED 4 TIMES A SECOND BY T4RUPT.>[]
+----------------------------------------
+Total packets...>        65614 	      131228
+Total bytes.....>      2217118	     4434236
+Error packets...>           16 	          32
+Error bytes.....>          977	        1822
+Error percent...>         0.04 %	        0.04 %
+Error ppm.......>       440.66 ppm	      410.89 ppm
+----------------------------------------
+runend: 2021-07-27 12:20:53.893807
+runtime: 0:15:20.535927
+========================================================================
+Run # 2
+runbeg: 2021-07-27 12:20:53.893895
+----------------------------------------
+121 121 82 False
+   T<121:#	PART OF THE BACK-UP IDLE LOOP.  THE SECOND IS SHOW-BANKSUM WHICH RUNS AS A REGULAR EXECUTIVE JOB WITH ITS OWN>[d2157cf8]
+   F<82:#	PART OF THE BACK-UP IDLE LOOP.  THE SECOND IS SHOW-BANKSUM WHICH RUNS AS A 7cf8]>[]
+49 49 18 False
+   T<49:#							000XX. MIN				MUST LOAD 3 COMPS>[189e7e03]
+   F<18:#							000Xe7e03]>[]
+55 55 43 False
+   T<55:# RADAR RANGE RATE					WORD = -.6278 FEET/SEC>[dbb2e2dd]
+   T<43:# RADAR 			WORD = -.6278 FEET/SEC>[dbb2e2dd]
+23 23 17 False
+   T<23:		EBANK=	AOSQ>[fb8a1e81]
+   F<17:		EBANK=fb8a1e81]>[]
+27 27 23 False
+   T<27:		COUNT*	$$/IMODE>[2d09cb2e]
+   F<23:		COUNT*	$$/IMODE[2d09c>[]
+57 57 16 False
+   T<57: +2		EXTEND			# ENTRY HERE FROM SL FOR SCALARS.>[2a1e86c5]
+   F<16: +2		EXTa1e86c5]>[]
+18 18 8 False
+   T<18:			VINIT>[ae0c3cee]
+   F<0:>[]
+21 21 8 False
+   T<21:		TS	ALPHAQ>[94dda552]
+   F<0:>[]
+41 41 39 False
+   T<41:		ECADR	ABVEL			# 62	VEL3			DP3>[6d0fd01b]
+   T<39:		ECADR	VEL			# 62	VEL3			DP3>[6d0fd01b]
+16 16 8 False
+   T<16:		ASIN>[6650a570]
+   F<0:>[]
+23 23 8 False
+   T<23:		CA	READLBIT>[001f857f]
+   F<0:>[]
+69 69 58 False
+   T<69:#		(E)  TINT	TIME OF INTERCEPT (SOI) - SAVED FROM SOI PHASE>[cdb2ffaf]
+   T<58:#		(E)  F INTERCEPT (SOI) - SAVED FROM SOI PHASE>[cdb2ffaf]
+18 18 8 False
+   T<18:		EXTEND>[9576ae98]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      196842
+Total bytes.....>      2217118	     6651354
+Error packets...>           13 	          45
+Error bytes.....>          538	        2360
+Error percent...>         0.02 %	        0.04 %
+Error ppm.......>       242.66 ppm	      354.81 ppm
+----------------------------------------
+runend: 2021-07-27 12:36:14.243578
+runtime: 0:15:20.349683
+========================================================================
+Run # 3
+runbeg: 2021-07-27 12:36:14.243656
+----------------------------------------
+121 121 114 False
+   T<121:#	IN R2 THE BBCON OF SELF-CHECK, AND IN R3 THE TOTAL NUMBER OF ERRORS DETECTED BY SELF-CHECK SINCE THE LAST MAN>[72e7f54b]
+   T<114:#	IN R2 ON OF SELF-CHECK, AND IN R3 THE TOTAL NUMBER OF ERRORS DETECTED BY SELF-CHECK SINCE THE LAST MAN>[72e7f54b]
+59 59 30 False
+   T<59:		DXCH	0000		# RESTORE THE TWO ERASABLE REGISTERS>[8b5ec2fc]
+   T<30:		DXCH	0000REGISTERS>[8b5ec2fc]
+83 83 65 False
+   T<83:## in storage size and consequent reduction in image quality as well) are>[3abfe389]
+   T<65:## in storage size and consequent rquality as well) are>[3abfe389]
+119 119 86 False
+   T<119:# TECHNOLOGY  75 CAMBRIDGE PARKWAY, CAMBRIDGE, MASSACHUSETTS UNDER PROJECT 55-238-70, SPONSORED BY THE MANNED>[cc861985]
+   T<86:# TECHNOIDGE, MASSACHUSETTS UNDER PROJECT 55-238-70, SPONSORED BY THE MANNED>[cc861985]
+36 36 35 False
+   T<36:### FILE="Main.annotation">[2e7cc7b3]
+   T<35:### FILE"Main.annotation">[2e7cc7b3]
+63 63 39 False
+   T<63:ORIG		EQUALS	RQVV +2		# I(1) =0 FOR EARTH	=2 FOR MOON>[9de4ef6b]
+   T<39:ORIG		EQVV +2		# I(1)FOR MOON>[9de4ef6b]
+25 25 14 False
+   T<25:		MASK	RNDVZBIT>[cf8b4fec]
+   F<14:		MASK	Rb4fec]>[]
+80 80 65 False
+   T<80:## available online at www.ibiblio.org/apollo.  If for some reason you>[56230902]
+   T<65:## availwww.ibiblio.org/apollo.  If for some reason you>[56230902]
+27 27 8 False
+   T<27:LEMPREC		STQ	CALL>[87cc2889]
+   F<0:>[]
+58 58 51 False
+   T<58:		DOUBLE			# TO FACILITATE OVERFLOW AND NEAR-ONE>[c4769a20]
+   T<51:		DOUBLE FACILITATE OVERFLOW AND NEAR-ONE>[c4769a20]
+61 61 35 False
+   T<61:		TS	MPAC		# LEAVE 5 BIT KEY CDE IN MPAC FOR CHARIN>[ede846d2]
+   T<35:		TS	MPAN MPAC FOR CHARIN>[ede846d2]
+69 69 54 False
+   T<69:#	IF LESS THAN 90 DEGREES, BIT 12 OF RADMODES IS SET = 0 TO>[b76e63cf]
+   T<54:#	IF LESES, BIT 12 OF RADMODES IS SET = 0 TO>[b76e63cf]
+22 22 11 False
+   T<22:		QXCH	RRRET>[5873ec4a]
+   F<11:		QXCH	RRRE>[]
+28 28 26 False
+   T<28:		STODL	BVECTOR +6>[1d41f238]
+   F<26:		STODL	BVECTOR +6[1d41f23>[]
+20 20 8 False
+   T<20:			OFFCALC>[5b62afc3]
+   F<0:>[]
+63 63 15 False
+   T<63:		VAD	VSU		# 	AND ADD THE RESULT TO R(CSM) - R TO GET>[bd6ad51c]
+   F<15:		VAD	VS6ad51c]>[]
+44 44 20 False
+   T<44:		OCT	00000			# 52	SPARE COMPONENT>[95698713]
+   T<20:		OCT	00NT>[95698713]
+23 23 8 False
+   T<23:		RAND	CHAN32>[eea2efb9]
+   F<0:>[]
+----------------------------------------
+Total packets...>        65614 	      262456
+Total bytes.....>      2217118	     8868472
+Error packets...>           18 	          63
+Error bytes.....>         1001	        3361
+Error percent...>         0.05 %	        0.04 %
+Error ppm.......>       451.49 ppm	      378.98 ppm
+----------------------------------------
+runend: 2021-07-27 12:51:36.440884
+runtime: 0:15:22.197228

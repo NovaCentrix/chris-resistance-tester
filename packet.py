@@ -11,25 +11,82 @@ def tf(flag):
   if flag: return 'T'
   else: return 'F'
 
-def check_hex(text):
-  bytes_hexdigits = bytes(string.hexdigits,'latin_1')
-  for ch in text:
-    if ch not in string.hexdigits: 
-      return False
-  return True
+class Hex_value:
+  # size is nibbles, not bytes
+  @classmethod
+  def check_hex(cls,text):
+    #bytes_hexdigits = bytes(string.hexdigits,'latin_1')
+    for ch in text:
+      if ch not in string.hexdigits: 
+        return False
+    return True
+  def __init__(self, value=0, size=4, vmin=None, vmax=None):
+    self.ival = None
+    self.size = size
+    if vmin is None:
+      self.vmin = 0
+    else:
+      self.vmin = vmin
+    if vmax is None:
+      self.vmax = pow(2,self.size*4)
+    else:
+      self.vmax = vmax
+    if isinstance(value, str):
+      self.from_string(value)
+    elif isinstance(value, int):
+      self.from_int(value)
+    if self.ival is None:
+      self.default()
+  def default(self):
+    self.ival = 0
+    self.hval = '0'.zfill(self.size)
+  def limits(self, value):
+    if self.vmin is not None \
+       and self.vmax is not None:
+      return value >= self.vmin and value < self.vmax
+    return True
+  def from_int(self, value):
+    self.default()
+    if self.limits(value):
+      self.ival = value
+      self.hval = hex(value)[2:].zfill(self.size)
+    return self
+  def from_string(self, text):
+    if self.check_hex(text) and len(text)<=self.size:
+      self.ival = int(text,16)
+      self.hval = text.zfill(self.size)
+      if not self.limits(self.ival):
+        self.default()
+      return self
+  def __eq__(a,b):
+    return a.ival == b.ival
+  def __gt__(a,b):
+    return a.ival > b.ival
+  def __str__(self):
+    return f'{self.ival:5d}\t0x{self.hval}'
+  def __repr__(self):
+    return f'{self.ival:5d}\t0x{self.hval}'
 
-class Parse_errors:
-  def __init__(self):
-    self.sync = False
-    self.chret = False
-    self.tabs = False
-    self.size_packet = False
-    self.size_size = False
-    self.size_crc = False
-    self.size_payload = False
-    self.hex_size = False
-    self.hex_src = False
-    self.crc = False
+
+class Parsing_status:
+  def __init__(self, init=False):
+    self.assign_all(init)
+  def set_all(self):
+    self.assign_all(True)
+  def clr_all(self):
+    self.assign_all(False)
+  def assign_all(self, init):
+    self.sync = init
+    self.chret = init
+    self.tabs = init
+    self.size_packet = init
+    self.size_size = init
+    self.size_crc = init
+    self.size_payload = init
+    self.hex_size = init
+    self.hex_crc = init
+    self.crc = init
+    self.valid = init
   def __bool__(self):
     return all( [
       self.sync, 
@@ -40,7 +97,7 @@ class Parse_errors:
       self.size_crc, 
       self.size_payload, 
       self.hex_size, 
-      self.hex_src, 
+      self.hex_crc, 
       self.crc, 
       ] )
   def __str__(self):
@@ -53,10 +110,11 @@ class Parse_errors:
       f'\nsize of crc.......>  {tf(self.size_crc)}   must be eight bytes'  \
       f'\nsize of payload...>  {tf(self.size_payload)}   must agree with size in packet'  \
       f'\nsize valid hex....>  {tf(self.hex_size)}   contains valid hexadecimal characters'  \
-      f'\ncrc valid hex.....>  {tf(self.hex_src)}   contains valid hexadecimal characters'  \
+      f'\ncrc valid hex.....>  {tf(self.hex_crc)}   contains valid hexadecimal characters'  \
       f'\ncrc is valid......>  {tf(self.crc)}   crc calculations match crc in packet' 
   def __repr__(self):
     return self.__str__()
+
 
 class Packet:
   # Packet:
@@ -68,42 +126,47 @@ class Packet:
   #   4   tab characters 3 + cr 1 
   #  22 + x  Total Packet Size
   def __init__(self):
+    self.overhead = 22
+    self.sync = 'PACKET'
+    self.size = Hex_value(0, size=4)
+    self.payload = ''
+    self.crc = Hex_value(0, size=8)
+    self.stat = Parsing_status()
     self.reset()
   def reset(self):
-    self.sync = 'PACKET'
-    self.overhead = 22
-    self.size = 0
-    self.payload = ''
-    self.crc=''
-    self.valid = False
+    self.generate('')
   def __eq__(a,b):
     return a.payload == b.payload and a.size == b.size and a.crc == b.crc
   def __str__(self):
-    return f'{tf(self.valid)}:{self.sync}_{self.size}_{self.payload}_{self.crc}'
+    return f'{self.sync}\t{(self.size.hval)}\t{self.payload}\t{(self.crc.hval)} ({tf(self.stat)})'
   def __repr__(self):
-    return f'{tf(self.valid)}:{self.sync}_{self.size}_{self.payload}_{self.crc}'
+    return self.__str__()
   def raw(self):
     return self.packet
+  
   def generate(self, payload):
     self.payload = payload
-    self.crc = hex(binascii.crc32(bytes(self.payload,'latin_1')))[2:].zfill(8)
-    self.size = hex(len(self.payload))[2:].zfill(4)
-    self.packet = '\t'.join([self.sync, self.size, self.payload, self.crc]) + '\r'
-    self.valid = True
+    crc = binascii.crc32(bytes(self.payload,'latin_1'))
+    print(crc)
+    self.crc.from_int( crc )
+    self.size.from_int( len(self.payload) )
+    self.packet = '\t'.join([self.sync, self.size.hval, self.payload, self.crc.hval]) + '\r'
+    self.stat.set_all()
 
   def parse(self, packet):
+    self.valid = False
     pktsize = len(packet)
-    self.ck_size_packet = pktsize >= 22
+    self.stat.size_packet = pktsize >= self.overhead
     print('packet size:', pktsize)
-    if self.ck_size_packet:
-      self.ck_cr = packet.endswith('\r')
-      print('ends with CR:', self.ck_cr)
-      self.ck_sync = packet.startswith('PACKET')
+    if self.stat.size_packet:
+      self.stat.cr = packet.endswith('\r')
+      print('ends with CR:', self.stat.cr)
+      self.stat.sync = packet.startswith('PACKET')
       fields = packet.strip().split('\t')
       num_fields = len(fields)
-      self.ck_tabs = num_fields == 4
+      self.stat.tabs = num_fields == 4
       print('number of tabs:', num_fields)
-      if self.ck_tabs:
+      if self.stat.tabs:
         sync = fields[0]
         size = fields[1]
         payload = fields[2]
@@ -112,32 +175,45 @@ class Packet:
         print('size:', size)
         print('payl:', payload)
         print(' crc:', crc)
-        self.ck_size_size = len(size) == 4
-        self.ck_size_crc = len(crc) == 8
-        self.ck_hex_size = check_hex(size)
-        self.ck_hex_src = check_hex(crc)
+        self.stat.size_size = len(size) == 4
+        self.stat.size_crc = len(crc) == 8
+        self.stat.hex_size = Hex_value.check_hex(size)
+        self.stat.hex_crc = Hex_value.check_hex(crc)
+        print('stat.size_size:', self.stat.size_size)
+        print('stat.size_crc:', self.stat.size_crc)
+        print('stat.hex_size:', self.stat.hex_size)
+        print('stat.hex_crc:', self.stat.hex_crc)
         if all([ 
-            self.ck_cr, self.ck_sync, 
-            self.ck_size_size, self.ck_size_crc,
-            self.ck_hex_size, self.ck_hex_crc 
+            self.stat.cr, self.stat.sync, 
+            self.stat.size_size, self.stat.size_crc,
+            self.stat.hex_size, self.stat.hex_crc 
         ] ):
-          self.ck_size_payload = len(payload) == int(size,16)
-          if self.ck_size_payload:
+          print('all okay')
+          self.stat.size_payload = len(payload) == int(size,16)
+          print('stat.size_payload:', self.stat.size_payload )
+          if self.stat.size_payload:
             crc_calc = hex(binascii.crc32(bytes(payload,'latin_1')))[2:].zfill(8)
-            self.ck_crc = crc == crc_calc
-            if self.ck_crc:
-              # finally!!!!
+            self.stat.crc = crc == crc_calc
+            print('stat.crc:', self.stat.crc )
+            if self.stat.crc:
+              print('finally!!!!')
+              print('sync:', sync)
+              print('size:', size)
+              print('payload:', payload)
+              print('crc:', crc)
               self.sync = sync
-              self.crc = crc
+              self.size.from_string(size)
               self.payload = payload
-              self.size = size
-              self.valid = True
-          else:
-            self.reset()
-        # minimum packet size is size of CRC
-        self.reset()
+              self.crc.from_string(crc)
 
+    if not self.stat:
+      self.reset()
 
+  def untab(self, text):
+    return text.replace('\t','{TAB}').replace('\r','{CR}')
+
+  def retab(self, text):
+    return text.replace( '{TAB}', '\t' ).replace('{CR}', '\r' )
 
 class Corpus:
   def __init__( self, fname='source.agc' ):
@@ -188,6 +264,16 @@ print(msg)
 
 p2 = Packet()
 p2.parse(msg)
+
+pr = Packet()
+rmsg = pr.untab(msg)
+pr.generate(rmsg)
+reply = pr.raw()
+
+pck = Packet()
+pck.parse(reply)
+kmsg = pck.retab(pck.payload)
+
 
 #if __name__ == "__main__":
 #  main()

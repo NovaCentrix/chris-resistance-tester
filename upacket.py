@@ -19,8 +19,12 @@ class Packet_type:
   # flag self.unknown will be set, however, if an
   # invalid string was used to initialize the 
   # packet type
-  TYPES = { 'packet': 'PACKET', 'acknak': 'ACKNAK' }
-  def __init__(self, stype='packet'):
+  PTYPE_DEF = 'pksend'
+  PTYPES = { 'pksend': 'PKSEND', 
+             'pkecho': 'PKECHO', 
+             'acknak': 'ACKNAK',
+          }
+  def __init__(self, stype=None):
     self.set_ptype(stype)
   def __eq__(a,b):
     return a.ptype == b.ptype
@@ -29,14 +33,15 @@ class Packet_type:
   def __repr__(self):
     return self.__str__()
   def validate(self, stype):
-    return stype.lower() in self.TYPES
-  def set_ptype(self, stype='packet'):
+    return stype.lower() in self.PTYPES
+  def set_ptype(self, stype=None):
+    if stype is None: stype = self.PTYPE_DEF
     if self.validate(stype):
       self.unknown = False
-      self.ptype = self.TYPES[stype.lower()]
+      self.ptype = self.PTYPES[stype.lower()]
     else:
       self.unknown = True
-      self.ptype = self.TYPES['packet']
+      self.ptype = self.PTYPES[self.PTYPE_DEF]
 
 class Hex_value:
   # size is nibbles, not bytes
@@ -96,7 +101,6 @@ class Hex_value:
   def __repr__(self):
     return __str__()
 
-
 class Parsing_status:
   def __init__(self, init=False):
     self.assign_all(init)
@@ -117,14 +121,12 @@ class Parsing_status:
     self.hex_crc = init
     self.crc = init
     self.valid = init
-
   def set_lengths( self, lpacket=0, lsync=0, lsize=0, lpayload=0, lcrc=0 ):
     self.len_packet = lpacket
     self.len_sync = lsync
     self.len_size = lsize
     self.len_payload = lpayload
     self.len_crc = lcrc
-
   def __bool__(self):
     return all( [
       self.sync, 
@@ -157,7 +159,38 @@ class Parsing_status:
       '\ncrc is valid......>  {}  crc calculations match crc in packet'.format( tf(self.crc) )
   def __repr__(self):
     return self.__str__()
-
+  def serialize(self):
+    return \
+      '{},{},{},{},{};'.format( \
+          self.len_packet, self.len_sync, self.len_size,\
+          self.len_payload, self.len_crc ) + \
+      '{},{},{},{},{},{},{},{},{},{}'.format( 
+          tf(self.sync), tf(self.chret), tf(self.tabs),
+          tf(self.size_packet), tf(self.size_size), tf(self.size_crc),
+          tf(self.size_payload), tf(self.hex_size), tf(self.hex_crc),
+          tf(self.crc) )
+  def unserialize(self, text):
+    parts = text.strip().split(';')
+    if len(parts) != 2: return False
+    nums = parts[0].split(',')
+    if len(nums) != 5: return False
+    flags = parts[1].split(',')
+    if len(flags) != 10: return False
+    self.len_packet   = nums[0]
+    self.len_sync     = nums[1]
+    self.len_size     = nums[2]
+    self.len_payload  = nums[3]
+    self.len_crc      = nums[4]
+    self.sync         = flags[0] == 'T'
+    self.chret        = flags[1] == 'T'
+    self.tabs         = flags[2] == 'T'
+    self.size_packet  = flags[3] == 'T'
+    self.size_size    = flags[4] == 'T'
+    self.size_crc     = flags[5] == 'T'
+    self.size_payload = flags[6] == 'T'
+    self.hex_size     = flags[7] == 'T'
+    self.hex_crc      = flags[8] == 'T'
+    self.crc          = flags[9] == 'T'
 
 class Packet:
   # Packet:
@@ -169,9 +202,8 @@ class Packet:
   #   4   tab characters 3 + cr 1 
   #  22 + x  Total Packet Size
   OVERHEAD = 22
-  def __init__(self, payload='', stype='packet'):
+  def __init__(self, payload='', stype=None):
     self.vb=False # verbosity
-    self.stat = Parsing_status()
     self.generate(payload, stype)
   def __eq__(a,b):
     return a.sync == b.sync and \
@@ -180,8 +212,8 @@ class Packet:
            a.crc == b.crc
   def __str__(self):
     #return '{}\t{}\t{}\t{} ({})'.format(
-    return '{} / {} / {} / {}   ({})'.format(
-        self.sync, self.size.hval, self.payload, self.crc.hval, tf(self.stat) )
+    return '{} / {} / {} / {}'.format(
+        self.sync, self.size.hval, self.payload, self.crc.hval )
   def __repr__(self):
     return self.__str__()
   def raw(self):
@@ -193,45 +225,43 @@ class Packet:
   def reset(self):
     self.generate()
 
-  def generate(self, payload='', stype='packet'):
+  def generate(self, payload='', stype=None):
     self.sync = Packet_type(stype)
     self.payload = payload
     self.size = Hex_value(len(self.payload), size=4)
     crc = binascii.crc32(bytes(self.payload,'latin_1'))
     self.crc = Hex_value( crc, size=8)
     self.build()
-    self.stat.set_all()
-    self.stat.set_lengths(len(self.packet), 6, 4, len(self.payload), 8)
 
   def parse(self, packet):
-    self.stat.clr_all()
-    self.valid = False
+    status = Parsing_status()
+    status.clr_all()
     pktsize = len(packet)
-    self.stat.len_packet = pktsize
-    self.stat.size_packet = pktsize >= self.OVERHEAD
+    status.len_packet = pktsize
+    status.size_packet = pktsize >= self.OVERHEAD
     if self.vb: print('packet size:', pktsize)
-    if self.stat.size_packet:
-      self.stat.cr = packet.endswith('\r')
-      if self.vb: print('ends with CR:', self.stat.cr)
+    if status.size_packet:
+      status.chret = packet.endswith('\r')
+      if self.vb: print('ends with CR:', status.chret)
       fields = packet.strip().split('\t')
       num_fields = len(fields)
-      self.stat.tabs = num_fields == 4
+      status.tabs = num_fields == 4
       if self.vb: print('number of tabs:', num_fields)
-      if self.stat.tabs:
+      if status.tabs:
         if self.vb: print('fields0.sync:', fields[0])
         if self.vb: print('fields1.size:', fields[1])
         if self.vb: print('fields2.payl:', fields[2])
         if self.vb: print('fields3.crc :', fields[3])
-        self.stat.len_sync = len(fields[0])
-        self.stat.len_size = len(fields[1])
-        self.stat.len_payload = len(fields[2])
-        self.stat.len_crc = len(fields[3])
-        self.stat.size_size = len(fields[1]) == 4
-        self.stat.size_crc = len(fields[3]) == 8
-        self.stat.hex_size = Hex_value.check_hex(fields[1])
-        self.stat.hex_crc = Hex_value.check_hex(fields[3])
+        status.len_sync = len(fields[0])
+        status.len_size = len(fields[1])
+        status.len_payload = len(fields[2])
+        status.len_crc = len(fields[3])
+        status.size_size = len(fields[1]) == 4
+        status.size_crc = len(fields[3]) == 8
+        status.hex_size = Hex_value.check_hex(fields[1])
+        status.hex_crc = Hex_value.check_hex(fields[3])
         sync = Packet_type( fields[0] )
-        self.stat.sync = not sync.unknown
+        status.sync = not sync.unknown
         size = Hex_value(fields[1], size=4)
         payload = fields[2]
         crc = Hex_value(fields[3], size=8)
@@ -239,24 +269,24 @@ class Packet:
         if self.vb: print('size:', size)
         if self.vb: print('payl:', payload)
         if self.vb: print(' crc:', crc)
-        if self.vb: print('stat.size_size:', self.stat.size_size)
-        if self.vb: print('stat.size_crc:', self.stat.size_crc)
-        if self.vb: print('stat.hex_size:', self.stat.hex_size)
-        if self.vb: print('stat.hex_crc:', self.stat.hex_crc)
+        if self.vb: print('stat.size_size:', status.size_size)
+        if self.vb: print('stat.size_crc:', status.size_crc)
+        if self.vb: print('stat.hex_size:', status.hex_size)
+        if self.vb: print('stat.hex_crc:', status.hex_crc)
         if all([ 
-            self.stat.cr, self.stat.sync, 
-            self.stat.size_size, self.stat.size_crc,
-            self.stat.hex_size, self.stat.hex_crc 
+            status.chret, status.sync, 
+            status.size_size, status.size_crc,
+            status.hex_size, status.hex_crc 
         ] ):
           if self.vb: print('all okay')
-          self.stat.size_payload = len(payload) == size.ival
-          if self.vb: print('stat.size_payload:', self.stat.size_payload )
-          if self.stat.size_payload:
+          status.size_payload = len(payload) == size.ival
+          if self.vb: print('stat.size_payload:', status.size_payload )
+          if status.size_payload:
             crc_calc = Hex_value( binascii.crc32(bytes(payload,'latin_1')), size=8 )
             if self.vb: print('crc_calc:', crc_calc)
-            self.stat.crc = crc == crc_calc
-            if self.vb: print('stat.crc:', self.stat.crc )
-            if self.stat.crc:
+            status.crc = crc == crc_calc
+            if self.vb: print('stat.crc:', status.crc )
+            if status.crc:
               if self.vb: print('finally!!!!')
               if self.vb: print('sync:', sync)
               if self.vb: print('size:', size)
@@ -267,9 +297,10 @@ class Packet:
               self.payload = payload
               self.crc = crc
               self.build()
-
-    if not self.stat:
+    if not status:
       self.reset()
+
+    return status
 
   @classmethod
   def untab(cls, text):
@@ -280,7 +311,9 @@ class Packet:
     return text.replace( '{TAB}', '\t' ).replace('{CR}', '\r' )
 
 
-def testme(message='hello'):
+#def testme(message='hello'):
+message = 'hello'
+if True:
 
   print('====Generated packet p:')
   p = Packet()
@@ -293,11 +326,10 @@ def testme(message='hello'):
   print('====Parsed packet p2:')
   toparse = p.raw()
   p2 = Packet()
-  p2.parse(toparse)
+  p2_status = p2.parse(toparse)
   print('toparse:', toparse)
   print('P2 Packet:')
   print(p2)
-
 
   print('====Reply un-tabbed payload packet pr:')
   pr = Packet()
@@ -310,7 +342,7 @@ def testme(message='hello'):
   print('====Extract from received packet pck:')
   reply = pr.raw()
   pck = Packet()
-  pck.parse(reply)
+  pck_status = pck.parse(reply)
   print('reply:', reply)
   print('Packet:')
   print(pck)
@@ -321,9 +353,10 @@ def testme(message='hello'):
   p0 = Packet()
   retab_msg = p0.retab(kmsg)
   print('Retabbed payload:', retab_msg)
-  p0.parse(retab_msg)
+  p0_status = p0.parse(retab_msg)
   print('P0 Original Packet:')
   print(p0)
+
 
 
 

@@ -6,68 +6,12 @@ import time
 import binascii
 import string
 import datetime as dt
+import upacket
 
 def ttsend( size, baud ):
   tbit = 1.0 / baud
   tbyte = 10.0 * tbit
   return size * tbyte
-
-def tf(flag):
-  if flag: return 'T'
-  else: return 'F'
-
-def check_hex(text):
-  bytes_hexdigits = bytes(string.hexdigits,'latin_1')
-  for ch in text:
-    if ch not in string.hexdigits: 
-      return False
-  return True
-
-class Packet:
-  def __init__(self):
-    self.payload = ''
-    self.size = 0
-    self.crc='[]'
-    self.valid = False
-  def __eq__(a,b):
-    return a.payload == b.payload and a.size == b.size and a.crc == b.crc
-  def __str__(self):
-    return f'{tf(self.valid)}<{self.size}:{self.payload}>{self.crc}'
-  def __repr__(self):
-    return f'{tf(self.valid)}<{self.size}:{self.payload}>{self.crc}'
-  def generate(self, payload):
-    self.payload = payload
-    self.crc = '['+hex(binascii.crc32(bytes(self.payload,'latin_1')))[2:].zfill(8)+']'
-    self.packet = self.payload + self.crc
-    self.size = len(self.packet)
-    self.valid = True
-
-  def crc_valid_format(self, text):
-    """Check if the 8 bytes of CRC are proper format."""
-    if text[0] != '[': return False
-    if text[9] != ']': return False
-    if not check_hex(text[1:-1]): return False
-    return True
-    
-  def parse(self, packet):
-    if len(packet) < 10:
-      # minimum packet size is size of CRC
-      self.payload = ''
-      self.size = 0
-      self.crc='[]'
-      self.valid = False
-    else: 
-      crcmaybe = packet[-10:]
-      if self.crc_valid_format(crcmaybe):
-        self.crc = crcmaybe
-        self.payload = packet[0:-10]
-        self.size = len(packet)
-        self.valid = True
-      else:
-        self.crc='[]'
-        self.payload = packet
-        self.size = len(packet)
-        self.valid = False
 
 class Corpus:
   def __init__( self, fname='source.agc' ):
@@ -188,8 +132,8 @@ def main():
 
   c = Corpus()
   p = Port()
-  px = Packet()
-  pr = Packet()
+  px = upacket.Packet()
+  pr = upacket.Packet()
   retry = 10
 
   totals = Totals() # tally of data and errors
@@ -244,8 +188,8 @@ def main2():
 
   c = Corpus()
   p = Port()
-  px = Packet()
-  pr = Packet()
+  px = upacket.Packet()
+  pr = upacket.Packet()
   retry = 10
 
   totals = Totals() # tally of data and errors

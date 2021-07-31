@@ -14,6 +14,52 @@ def tf(flag):
   if flag: return 'T'
   else: return 'F'
 
+class Bool_confirmed:
+  UNK = 0
+  TRUE = 1
+  FALSE = 2
+  ERROR = 3
+  BSTRING = [ 'x', 'T', 'F', 'e' ]
+  MIN = 0
+  MAX = 3
+  def from_bool(self, value):
+    if value: self.flag = self.TRUE
+    else:     self.flag = self.FALSE
+  def from_string(self, value):
+    if len(value)==0:
+      self.flag = self.UNK
+    #else:
+    #  if value[0].lower in (b.lower() for b in self.BSTRING):
+    #    self.flag=self.BSTRING.index(value[0])
+    #  else:
+    #    self.flag = self.UNK
+    else:
+      if value[0].lower() in (b.lower() for b in self.BSTRING):
+        self.flag = next( i for i,v in enumerate(self.BSTRING) \
+                              if v.lower() == value[0].lower() )
+      else:
+        self.flag = self.ERROR
+  def to_string(self):
+    return __str__(self)
+  def __init__(self, flag=None):
+    if flag is None: self.flag = self.UNK
+    elif flag > self.MAX: self.flag = self.ERROR
+    elif flag < self.MIN: self.flag = self.ERROR
+    else: self.flag = flag
+  def __bool__(self):
+    return self.flag == self.TRUE
+  def __eq__(a,b):
+    if a.valid() and b.valid():
+      return a.flag == b.flag
+    else:
+      return False
+  def valid(self):
+    return self.flag == self.TRUE or self.flag == self.FALSE
+  def __str__(self):
+    return self.BSTRING[ self.flag ]
+  def __repr__(self):
+    return self.__str__()
+
 class Packet_type:
   # packet type will always contain valid string
   # flag self.unknown will be set, however, if an
@@ -102,25 +148,22 @@ class Hex_value:
     return __str__()
 
 class Parsing_status:
-  def __init__(self, init=False):
-    self.assign_all(init)
-  def set_all(self):
-    self.assign_all(True)
-  def clr_all(self):
-    self.assign_all(False)
+  def __init__(self):
+    self.init_bools()
     self.set_lengths()
-  def assign_all(self, init):
-    self.sync = init
-    self.chret = init
-    self.tabs = init
-    self.size_packet = init
-    self.size_size = init
-    self.size_crc = init
-    self.size_payload = init
-    self.hex_size = init
-    self.hex_crc = init
-    self.crc = init
-    self.valid = init
+  def init_bools(self):
+    # initialized all to unknown
+    self.sync = Bool_confirmed()
+    self.chret = Bool_confirmed()
+    self.tabs = Bool_confirmed()
+    self.size_packet = Bool_confirmed()
+    self.size_size = Bool_confirmed()
+    self.size_crc = Bool_confirmed()
+    self.size_payload = Bool_confirmed()
+    self.hex_size = Bool_confirmed()
+    self.hex_crc = Bool_confirmed()
+    self.crc = Bool_confirmed()
+    self.valid = Bool_confirmed()
   def set_lengths( self, lpacket=0, lsync=0, lsize=0, lpayload=0, lcrc=0 ):
     self.len_packet = lpacket
     self.len_sync = lsync
@@ -147,16 +190,16 @@ class Parsing_status:
       '\nlen of size.......>  {}  bytes'.format( self.len_size ) +\
       '\nlen of payload....>  {}  bytes'.format( self.len_payload ) +\
       '\nlen of crc........>  {}  bytes'.format( self.len_crc ) +\
-      '\nsync..............>  {}  sync pattern must be PACKET'.format( tf(self.sync) ) +\
-      '\nchret.............>  {}  packet must end with CR'.format( tf(self.chret) ) +\
-      '\ntabs..............>  {}  must be three tab separators'.format( tf(self.tabs) ) +\
-      '\nsize of packet....>  {}  must be 22 bytes or larger'.format( tf(self.size_packet) ) +\
-      '\nsize of size......>  {}  must be four bytes'.format( tf(self.size_size) ) +\
-      '\nsize of crc.......>  {}  must be eight bytes'.format( tf(self.size_crc) ) +\
-      '\nsize of payload...>  {}  must agree with size in packet'.format( tf(self.size_payload) ) +\
-      '\nsize valid hex....>  {}  contains valid hexadecimal characters'.format( tf(self.hex_size) ) +\
-      '\ncrc valid hex.....>  {}  contains valid hexadecimal characters'.format( tf(self.hex_crc) ) +\
-      '\ncrc is valid......>  {}  crc calculations match crc in packet'.format( tf(self.crc) )
+      '\nsync..............>  {}  sync pattern must be PACKET'.format( self.sync ) +\
+      '\nchret.............>  {}  packet must end with CR'.format( self.chret ) +\
+      '\ntabs..............>  {}  must be three tab separators'.format( self.tabs ) +\
+      '\nsize of packet....>  {}  must be 22 bytes or larger'.format( self.size_packet ) +\
+      '\nsize of size......>  {}  must be four bytes'.format( self.size_size ) +\
+      '\nsize of crc.......>  {}  must be eight bytes'.format( self.size_crc ) +\
+      '\nsize of payload...>  {}  must agree with size in packet'.format( self.size_payload ) +\
+      '\nsize valid hex....>  {}  contains valid hexadecimal characters'.format( self.hex_size ) +\
+      '\ncrc valid hex.....>  {}  contains valid hexadecimal characters'.format( self.hex_crc ) +\
+      '\ncrc is valid......>  {}  crc calculations match crc in packet'.format( self.crc )
   def __repr__(self):
     return self.__str__()
   def serialize(self):
@@ -165,32 +208,42 @@ class Parsing_status:
           self.len_packet, self.len_sync, self.len_size,\
           self.len_payload, self.len_crc ) + \
       '{},{},{},{},{},{},{},{},{},{}'.format( 
-          tf(self.sync), tf(self.chret), tf(self.tabs),
-          tf(self.size_packet), tf(self.size_size), tf(self.size_crc),
-          tf(self.size_payload), tf(self.hex_size), tf(self.hex_crc),
-          tf(self.crc) )
+          self.sync, self.chret, self.tabs,
+          self.size_packet, self.size_size, self.size_crc,
+          self.size_payload, self.hex_size, self.hex_crc,
+          self.crc )
   def unserialize(self, text):
     parts = text.strip().split(';')
-    if len(parts) != 2: return False
+    if len(parts) != 2: 
+      self.init_bools()
+      self.set_lengths()
+      return False
     nums = parts[0].split(',')
-    if len(nums) != 5: return False
+    if len(nums) != 5:
+      self.init_bools()
+      self.set_lengths()
+      return False
     flags = parts[1].split(',')
-    if len(flags) != 10: return False
+    if len(flags) != 10: 
+      self.init_bools()
+      self.set_lengths()
+      return False
     self.len_packet   = nums[0]
     self.len_sync     = nums[1]
     self.len_size     = nums[2]
     self.len_payload  = nums[3]
     self.len_crc      = nums[4]
-    self.sync         = flags[0] == 'T'
-    self.chret        = flags[1] == 'T'
-    self.tabs         = flags[2] == 'T'
-    self.size_packet  = flags[3] == 'T'
-    self.size_size    = flags[4] == 'T'
-    self.size_crc     = flags[5] == 'T'
-    self.size_payload = flags[6] == 'T'
-    self.hex_size     = flags[7] == 'T'
-    self.hex_crc      = flags[8] == 'T'
-    self.crc          = flags[9] == 'T'
+    self.sync.from_string(         flags[0] )
+    self.chret.from_string(        flags[1] )
+    self.tabs.from_string(         flags[2] )
+    self.size_packet.from_string(  flags[3] )
+    self.size_size.from_string(    flags[4] )
+    self.size_crc.from_string(     flags[5] )
+    self.size_payload.from_string( flags[6] )
+    self.hex_size.from_string(     flags[7] )
+    self.hex_crc.from_string(      flags[8] )
+    self.crc.from_string(          flags[9] )
+    return True
 
 class Packet:
   # Packet:
@@ -235,17 +288,16 @@ class Packet:
 
   def parse(self, packet):
     status = Parsing_status()
-    status.clr_all()
     pktsize = len(packet)
     status.len_packet = pktsize
-    status.size_packet = pktsize >= self.OVERHEAD
+    status.size_packet.from_bool( pktsize >= self.OVERHEAD )
     if self.vb: print('packet size:', pktsize)
     if status.size_packet:
-      status.chret = packet.endswith('\r')
+      status.chret.from_bool( packet.endswith('\r') )
       if self.vb: print('ends with CR:', status.chret)
       fields = packet.strip().split('\t')
       num_fields = len(fields)
-      status.tabs = num_fields == 4
+      status.tabs.from_bool( num_fields == 4 )
       if self.vb: print('number of tabs:', num_fields)
       if status.tabs:
         if self.vb: print('fields0.sync:', fields[0])
@@ -256,12 +308,12 @@ class Packet:
         status.len_size = len(fields[1])
         status.len_payload = len(fields[2])
         status.len_crc = len(fields[3])
-        status.size_size = len(fields[1]) == 4
-        status.size_crc = len(fields[3]) == 8
-        status.hex_size = Hex_value.check_hex(fields[1])
-        status.hex_crc = Hex_value.check_hex(fields[3])
+        status.size_size.from_bool( len(fields[1]) == 4 )
+        status.size_crc.from_bool( len(fields[3]) == 8 )
+        status.hex_size.from_bool( Hex_value.check_hex(fields[1]) )
+        status.hex_crc.from_bool( Hex_value.check_hex(fields[3]) )
         sync = Packet_type( fields[0] )
-        status.sync = not sync.unknown
+        status.sync.from_bool( not sync.unknown )
         size = Hex_value(fields[1], size=4)
         payload = fields[2]
         crc = Hex_value(fields[3], size=8)
@@ -279,12 +331,12 @@ class Packet:
             status.hex_size, status.hex_crc 
         ] ):
           if self.vb: print('all okay')
-          status.size_payload = len(payload) == size.ival
+          status.size_payload.from_bool( len(payload) == size.ival )
           if self.vb: print('stat.size_payload:', status.size_payload )
           if status.size_payload:
             crc_calc = Hex_value( binascii.crc32(bytes(payload,'latin_1')), size=8 )
             if self.vb: print('crc_calc:', crc_calc)
-            status.crc = crc == crc_calc
+            status.crc.from_bool( crc == crc_calc )
             if self.vb: print('stat.crc:', status.crc )
             if status.crc:
               if self.vb: print('finally!!!!')

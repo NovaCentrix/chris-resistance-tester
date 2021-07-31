@@ -10,10 +10,6 @@ def zfill(s, width):
   # Force # characters, fill with leading 0's
   return '{:0>{w}}'.format(s, w=width)
 
-def tf(flag):
-  if flag: return 'T'
-  else: return 'F'
-
 class Bool_confirmed:
   UNK = 0
   TRUE = 1
@@ -155,7 +151,7 @@ class Parsing_status:
     # initialized all to unknown
     self.sync = Bool_confirmed()
     self.chret = Bool_confirmed()
-    self.tabs = Bool_confirmed()
+    self.fields = Bool_confirmed()
     self.size_packet = Bool_confirmed()
     self.size_size = Bool_confirmed()
     self.size_crc = Bool_confirmed()
@@ -174,7 +170,7 @@ class Parsing_status:
     return all( [
       self.sync, 
       self.chret, 
-      self.tabs, 
+      self.fields, 
       self.size_packet, 
       self.size_size, 
       self.size_crc, 
@@ -192,7 +188,7 @@ class Parsing_status:
       '\nlen of crc........>  {}  bytes'.format( self.len_crc ) +\
       '\nsync..............>  {}  sync pattern must be PACKET'.format( self.sync ) +\
       '\nchret.............>  {}  packet must end with CR'.format( self.chret ) +\
-      '\ntabs..............>  {}  must be three tab separators'.format( self.tabs ) +\
+      '\nfields............>  {}  must be three unit separators'.format( self.fields ) +\
       '\nsize of packet....>  {}  must be 22 bytes or larger'.format( self.size_packet ) +\
       '\nsize of size......>  {}  must be four bytes'.format( self.size_size ) +\
       '\nsize of crc.......>  {}  must be eight bytes'.format( self.size_crc ) +\
@@ -208,7 +204,7 @@ class Parsing_status:
           self.len_packet, self.len_sync, self.len_size,\
           self.len_payload, self.len_crc ) + \
       '{},{},{},{},{},{},{},{},{},{}'.format( 
-          self.sync, self.chret, self.tabs,
+          self.sync, self.chret, self.fields,
           self.size_packet, self.size_size, self.size_crc,
           self.size_payload, self.hex_size, self.hex_crc,
           self.crc )
@@ -235,7 +231,7 @@ class Parsing_status:
     self.len_crc      = nums[4]
     self.sync.from_string(         flags[0] )
     self.chret.from_string(        flags[1] )
-    self.tabs.from_string(         flags[2] )
+    self.fields.from_string(       flags[2] )
     self.size_packet.from_string(  flags[3] )
     self.size_size.from_string(    flags[4] )
     self.size_crc.from_string(     flags[5] )
@@ -252,9 +248,10 @@ class Packet:
   #   4   len always 4 hex bytes
   #   x   payload variables length
   #   8   crc always 8 bytes
-  #   4   tab characters 3 + cr 1 
+  #   4   US characters 3 + cr 1 
   #  22 + x  Total Packet Size
   OVERHEAD = 22
+  USEP = '\x1f'
   def __init__(self, payload='', stype=None):
     self.vb=False # verbosity
     self.generate(payload, stype)
@@ -273,7 +270,7 @@ class Packet:
     return self.packet
   
   def build(self):
-    self.packet = '\t'.join([str(self.sync), self.size.hval, self.payload, self.crc.hval]) + '\r'
+    self.packet = self.USEP.join([str(self.sync), self.size.hval, self.payload, self.crc.hval]) + '\r'
 
   def reset(self):
     self.generate()
@@ -295,11 +292,11 @@ class Packet:
     if status.size_packet:
       status.chret.from_bool( packet.endswith('\r') )
       if self.vb: print('ends with CR:', status.chret)
-      fields = packet.strip().split('\t')
+      fields = packet.strip().split(self.USEP)
       num_fields = len(fields)
-      status.tabs.from_bool( num_fields == 4 )
-      if self.vb: print('number of tabs:', num_fields)
-      if status.tabs:
+      status.fields.from_bool( num_fields == 4 )
+      if self.vb: print('number of fields:', num_fields)
+      if status.fields:
         if self.vb: print('fields0.sync:', fields[0])
         if self.vb: print('fields1.size:', fields[1])
         if self.vb: print('fields2.payl:', fields[2])

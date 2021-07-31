@@ -142,6 +142,8 @@ class Hex_value:
     return '{:5d}\t0x{}'.format(self.ival, self.hval)
   def __repr__(self):
     return __str__()
+  def __int__(self):
+    return self.ival
 
 class Parsing_status:
   def __init__(self):

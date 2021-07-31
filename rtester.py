@@ -151,12 +151,12 @@ def main():
       time.sleep(0.005)
       px.generate(line)
       nsent = p.send(px.packet)
-      totals.all_accum( 1, px.size )
+      totals.all_accum( 1, int(px.size) )
       buff = p.recv(nsent)
       pr.parse(buff)
       match = px == pr
       if not match:
-        totals.err_accum( 1, px.size )
+        totals.err_accum( 1, int(px.size) )
         print(px.size, nsent, len(buff), pr==px, file=logger.fp)
         print('  ', px, file=logger.fp)
         print('  ', pr, file=logger.fp)
@@ -199,15 +199,19 @@ def main2():
       time.sleep(0.005)
       px.generate(line)
       nsent = p.send(px.packet)
-      totals.all_accum( 1, px.size )
+      totals.all_accum( 1, int(px.size) )
       buff = p.recv(nsent)
-      pr.parse(buff)
+      breakpoint()
+      stat = pr.parse(buff)
       match = px == pr
       if not match:
-        totals.err_accum( 1, px.size )
+
+        totals.err_accum( 1, int(px.size) )
         print(px.size, nsent, len(buff), pr==px)
         print('  ', px)
         print('  ', pr)
+        breakpoint()
+
       print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
              f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
              end='\r')

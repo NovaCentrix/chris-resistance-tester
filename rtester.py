@@ -152,14 +152,19 @@ def main():
       px.generate(line)
       nsent = p.send(px.packet)
       totals.all_accum( 1, int(px.size) )
-      buff = p.recv(nsent)
-      pr.parse(buff)
-      match = px == pr
+      #buff = p.recv(nsent)
+      buff = p.recv(1024)
+      stat = pr.parse(buff)
+      obuff = upacket.Packet.unserialize(pr.payload)
+      stats = po.parse(obuff)
+      #print(stats)
+      match = px == po
       if not match:
         totals.err_accum( 1, int(px.size) )
         print(px.size, nsent, len(buff), pr==px, file=logger.fp)
-        print('  ', px, file=logger.fp)
-        print('  ', pr, file=logger.fp)
+        print('  px:', px, file=logger.fp)
+        print('  pr:', pr, file=logger.fp)
+        print('  po:', po, file=logger.fp)
       if i % 1000 == 0:
         print(f'Run {run}: '
               f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
@@ -183,38 +188,72 @@ def main():
   logger.close()
 
 
-def main2():
+def main2(npackets=None, vb=False):
   """Main2: for manual ops, xmts, summary on screen, no logging"""
 
   c = Corpus()
   p = Port()
-  px = upacket.Packet()
-  pr = upacket.Packet()
+  px = upacket.Packet() # original packet to send
+  pr = upacket.Packet() # echoed back from tarte-py
+  po = upacket.Packet() # reconstructed original packet
+  pa = upacket.Packet() # ack/nak packet
   retry = 10
 
   totals = Totals() # tally of data and errors
 
-  while True:
+  looping = True
+  while looping:
     for i,line in enumerate(c.source):
-      time.sleep(0.005)
+      time.sleep(0.030)
+      if npackets is not None:
+        if i >= npackets:
+          looping=False
+          break
       px.generate(line)
       nsent = p.send(px.packet)
       totals.all_accum( 1, int(px.size) )
-      buff = p.recv(nsent)
-      breakpoint()
-      stat = pr.parse(buff)
-      match = px == pr
-      if not match:
+      #buff = p.recv(nsent)
+      # Get the reply
+      buff = p.recv(2048)
+      packets = buff.split(px.RSEP)
+      if len(packets) != 2:
+        print()
+        print('Sending:')
+        print(px)
+        print('buff:')
+        print(buff)
+        print('len packets', len(packets))
+        print('packets:')
+        for ppp in packets: print(ppp)
+        exit()
+      rbuff = packets[0]
+      abuff = packets[1]
+      stat = pr.parse(rbuff)
+      obuff = upacket.Packet.unserialize(pr.payload)
+      stats = po.parse(obuff)
+      #print(stats)
+      pa.parse(abuff)
+      match = px == po
+      if vb:
+        print('-----')
+        print('  px:', px)
+        print('  pr:', pr)
+        print('  po:', po)
+        print('  pa:', pa)
 
+      if not match:
         totals.err_accum( 1, int(px.size) )
         print(px.size, nsent, len(buff), pr==px)
-        print('  ', px)
-        print('  ', pr)
-        breakpoint()
+        print('  px:', px)
+        print('  pr:', pr)
+        print('  po:', po)
+        print('  pa:', pa)
+        exit()
 
-      print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
-             f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
-             end='\r')
+      if i % 100 == 0:
+        print( f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
+               f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}',
+               end='\r')
 
 
 #if __name__ == "__main__":

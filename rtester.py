@@ -198,6 +198,7 @@ def main2(npackets=None, vb=False):
   po = upacket.Packet() # reconstructed original packet
   pa = upacket.Packet() # ack/nak packet
   retry = 10
+  asc = upacket.Ascii()
 
   totals = Totals() # tally of data and errors
 
@@ -217,14 +218,15 @@ def main2(npackets=None, vb=False):
       buff = p.recv(2048)
       packets = buff.split(px.RSEP)
       if len(packets) != 2:
-        print()
-        print('Sending:')
-        print(px)
-        print('buff:')
-        print(buff)
-        print('len packets', len(packets))
-        print('packets:')
-        for ppp in packets: print(ppp)
+        print('\nNumber received packets not two')
+        print('  Sent:')
+        print('  ', px)
+        print('  Received buff:')
+        print('  ', asc.pretty(buff))
+        print('  len packets', len(packets))
+        print('  packets:')
+        for ppp in packets: 
+          print(ppp)
         exit()
       rbuff = packets[0]
       abuff = packets[1]
@@ -243,7 +245,12 @@ def main2(npackets=None, vb=False):
 
       if not match:
         totals.err_accum( 1, int(px.size) )
+        print('\nReceived packet does not match')
         print(px.size, nsent, len(buff), pr==px)
+        print('  Sent:')
+        print('  ', px)
+        print('  Received buff:')
+        print('  ', asc.pretty(buff))
         print('  px:', px)
         print('  pr:', pr)
         print('  po:', po)

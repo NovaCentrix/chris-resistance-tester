@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys, gc
 import time
 import binascii
 
@@ -256,6 +257,7 @@ class Packet:
   USEP = '\x1f'
   RSEP = '\x1e'
   def __init__(self, payload='', stype=None):
+    self.asc = Ascii()
     self.vb=False # verbosity
     self.generate(payload, stype)
   def __eq__(a,b):
@@ -266,7 +268,7 @@ class Packet:
   def __str__(self):
     #return '{}\t{}\t{}\t{} ({})'.format(
     return '{} / {} / {} / {}'.format(
-        self.sync, self.size.hval, self.payload, self.crc.hval )
+        self.sync, self.size.hval, self.asc.pretty(self.payload), self.crc.hval )
   def __repr__(self):
     return self.__str__()
   def raw(self):
@@ -416,154 +418,81 @@ def testme(message='hello'):
 #  main()
 
 class Code_point:
-  def __init__(self, code, uni, abbr, descr):
+  def __init__(self, code, uni, sym, abbr, descr):
     self.code = code
     self.uni = uni
+    self.sym = sym 
     self.abbr = abbr 
     self.descr = descr
+  def __str__(self):
+    return '{:3d}\t0x{:02x}\t{:4}\t{:4}\t{}'.format(\
+        self.code, self.code, self.sym, self.abbr, self.descr)
+  def __repr__(self):
+    return self.__str__()
 
 class Ascii:
   def __init__(self):
-    print('size, bytes', len(self.ASCII_DESCRIPTION))
-    self.table = self.ASCII_DESCRIPTION.splitlines() 
-    print('size, lines', len(self.table))
+
+    #=== Initialize table of ASCII characters
+    fp = open( 'ascii-table.txt', 'r', encoding='unicode_escape')
     self.codes = []
-    for line in self.table:
-      #print(line)
-      code, uni, abbr, descr = line.split('\t')
-      #print(code, uni, abbr, descr)
-      self.codes.append( Code_point(code, uni, abbr, descr) )
+    for line in fp:
+      code, uni, sym, abbr, descr = line.split('\t')
+      self.codes.append( Code_point(int(code,16), uni, sym, abbr, '') )
+    fp.close()
+    gc.collect()
+    # tweak a few control symbols
+    fp = open( 'ascii-tweaks.txt', 'r', encoding='unicode_escape')
+    for line in fp:
+      fields = line.split('\t')
+      code = int(fields[0],16)
+      op = self.codes[code] # old code point to be replaced
+      np = Code_point(code, op.uni, fields[1], op.abbr, op.descr) 
+      self.codes[code] = np
+    fp.close()
+    gc.collect()
 
+    ####    # # === Visual control codes per ISO-2047
+    ####    fp = open( 'ascii-iso2047.txt', 'r', encoding='unicode_escape')
+    ####    self.iso2047 = self.codes.copy()
+    ####    for line in fp:
+    ####      fields = line.split('\t')
+    ####      code = int(fields[0],16)
+    ####      op = self.iso2047[code] # old code point to be replaced
+    ####      np = Code_point(code, op.uni, fields[1], op.abbr, op.descr) 
+    ####      self.iso2047[code] = np
+    ####    fp.close()
 
+  def pretty(self, text):
+    stext = []
+    for ch in text:
+      sym = self.codes[ord(ch)].sym
+      if len(sym) > 1:
+        stext.append( '{{{}}}'.format(sym) )
+      else:
+        stext.append( sym )
+    return ''.join(stext)
 
+  def visible( self, ch ):
+    cp = ord(ch[0])
+    if cp >=0 and cp <= 0x1f: return False
+    if cp == 0x20: return False
+    if cp == 0x7f: return False
+    return True
 
-  ASCII_DESCRIPTION=\
-  """0x00	'u+0000	NUL	null character'
-     0x01	'u+0001	SOH	start of heading'
-     0x02	'u+0002	STX	start of text'
-     0x03	'u+0003	ETX	end of text'
-     0x04	'u+0004	EOT	end of transmission'
-     0x05	'u+0005	ENQ	enquiry'
-     0x06	'u+0006	ACK	acknowledge'
-     0x07	'u+0007	BEL	bell'
-     0x08	'u+0008	BS	backspace'
-     0x09	'u+0009	HT	horizontal tab'
-     0x0a	'u+000a	LF	new line'
-     0x0b	'u+000b	VT	vertical tab'
-     0x0c	'u+000c	FF	form feed'
-     0x0d	'u+000d	CR	carriage ret'
-     0x0e	'u+000e	SO	shift out'
-     0x0f	'u+000f	SI	shift in'
-     0x10	'u+0010	DLE	data link escape'
-     0x11	'u+0011	DC1	device control 1'
-     0x12	'u+0012	DC2	device control 2'
-     0x13	'u+0013	DC3	device control 3'
-     0x14	'u+0014	DC4	device control 4'
-     0x15	'u+0015	NAK	negative ack.'
-     0x16	'u+0016	SYN	synchronous idle'
-     0x17	'u+0017	ETB	end of trans. blk'
-     0x18	'u+0018	CAN	cancel'
-     0x19	'u+0019	EM 	end of medium'
-     0x1a	'u+001a	SUB	substitute'
-     0x1b	'u+001b	ESC	escape'
-     0x1c	'u+001c	FS	file separator'
-     0x1d	'u+001d	GS	group separator'
-     0x1e	'u+001e	RS	record separator'
-     0x1f	'u+001f	US	unit separator'
-     0x20	'u+0020	 	space'
-     0x21	'u+0021	!	exclamation mark'
-     0x22	'u+0022	"	quotation mark'
-     0x23	'u+0023	#	number sign'
-     0x24	'u+0024	$	dollar sign'
-     0x25	'u+0025	%	percent sign'
-     0x26	'u+0026	&	ampersand'
-     0x27	'u+0027	\	 apostrophe'
-     0x28	'u+0028	(	left parenthesis'
-     0x29	'u+0029	)	right parenthesis'
-     0x2a	'u+002a	*	asterisk'
-     0x2b	'u+002b	+	plus sign'
-     0x2c	'u+002c	,	comma'
-     0x2d	'u+002d	-	hyphen-minus'
-     0x2e	'u+002e	.	full stop'
-     0x2f	'u+002f	/	solidus'
-     0x30	'u+0030	0	digit zero'
-     0x31	'u+0031	1	digit one'
-     0x32	'u+0032	2	digit two'
-     0x33	'u+0033	3	digit three'
-     0x34	'u+0034	4	digit four'
-     0x35	'u+0035	5	digit five'
-     0x36	'u+0036	6	digit six'
-     0x37	'u+0037	7	digit seven'
-     0x38	'u+0038	8	digit eight'
-     0x39	'u+0039	9	digit nine'
-     0x3a	'u+003a	:	colon'
-     0x3b	'u+003b	;	semicolon'
-     0x3c	'u+003c	<	less-than sign'
-     0x3d	'u+003d	=	equals sign'
-     0x3e	'u+003e	>	greater-than sign'
-     0x3f	'u+003f	?	question mark'
-     0x40	'u+0040	@	commercial at'
-     0x41	'u+0041	A	latin capital letter A'
-     0x42	'u+0042	B	latin capital letter B'
-     0x43	'u+0043	C	latin capital letter C'
-     0x44	'u+0044	D	latin capital letter D'
-     0x45	'u+0045	E	latin capital letter E'
-     0x46	'u+0046	F	latin capital letter F'
-     0x47	'u+0047	G	latin capital letter G'
-     0x48	'u+0048	H	latin capital letter H'
-     0x49	'u+0049	I	latin capital letter I'
-     0x4a	'u+004a	J	latin capital letter J'
-     0x4b	'u+004b	K	latin capital letter K'
-     0x4c	'u+004c	L	latin capital letter L'
-     0x4d	'u+004d	M	latin capital letter M'
-     0x4e	'u+004e	N	latin capital letter N'
-     0x4f	'u+004f	O	latin capital letter O'
-     0x50	'u+0050	P	latin capital letter P'
-     0x51	'u+0051	Q	latin capital letter Q'
-     0x52	'u+0052	R	latin capital letter R'
-     0x53	'u+0053	S	latin capital letter S'
-     0x54	'u+0054	T	latin capital letter T'
-     0x55	'u+0055	U	latin capital letter U'
-     0x56	'u+0056	V	latin capital letter V'
-     0x57	'u+0057	W	latin capital letter W'
-     0x58	'u+0058	X	latin capital letter X'
-     0x59	'u+0059	Y	latin capital letter Y'
-     0x5a	'u+005a	Z	latin capital letter Z'
-     0x5b	'u+005b	[	left square bracket'
-     0x5c	'u+005c	\\	 reverse solidus'
-     0x5d	'u+005d	]	right square bracket'
-     0x5e	'u+005e	^	circumflex accent'
-     0x5f	'u+005f	_	low line'
-     0x60	'u+0060	`	grave accent'
-     0x61	'u+0061	a	latin small letter a'
-     0x62	'u+0062	b	latin small letter b'
-     0x63	'u+0063	c	latin small letter c'
-     0x64	'u+0064	d	latin small letter d'
-     0x65	'u+0065	e	latin small letter e'
-     0x66	'u+0066	f	latin small letter f'
-     0x67	'u+0067	g	latin small letter g'
-     0x68	'u+0068	h	latin small letter h'
-     0x69	'u+0069	i	latin small letter i'
-     0x6a	'u+006a	j	latin small letter j'
-     0x6b	'u+006b	k	latin small letter k'
-     0x6c	'u+006c	l	latin small letter l'
-     0x6d	'u+006d	m	latin small letter m'
-     0x6e	'u+006e	n	latin small letter n'
-     0x6f	'u+006f	o	latin small letter o'
-     0x70	'u+0070	p	latin small letter p'
-     0x71	'u+0071	q	latin small letter q'
-     0x72	'u+0072	r	latin small letter r'
-     0x73	'u+0073	s	latin small letter s'
-     0x74	'u+0074	t	latin small letter t'
-     0x75	'u+0075	u	latin small letter u'
-     0x76	'u+0076	v	latin small letter v'
-     0x77	'u+0077	w	latin small letter w'
-     0x78	'u+0078	x	latin small letter x'
-     0x79	'u+0079	y	latin small letter y'
-     0x7a	'u+007a	z	latin small letter z'
-     0x7b	'u+007b	{	left curly bracket'
-     0x7c	'u+007c	|	vertical line'
-     0x7d	'u+007d	}	right curly bracket'
-     0x7e	'u+007e	~	tilde'
-     0x7f	'u+007f	DEL	tilde'"""
+  def serialize(self, text):
+    stext = []
+    for ch in text:
+      if self.visible(ch):
+        stext.append( ch )
+      else:
+        abbr = self.codes[ord(ch)].abbr
+        stext.append( '{{{}}}'.format(abbr) )
+    return ''.join(stext)
 
+  CONTROLS = list(range(32)) + [ 0x7f ]
+  def unserialize(self, text):
+    for cc in self.CONTROLS:
+      abbr = '{{{}}}'.format( self.codes[cc].abbr )
+      text = text.replace(abbr, chr(cc))
+    return text

@@ -129,7 +129,7 @@ def testme(init=False):
   print(tr1.counts)
   return [tr1, tr2]
 
-def set_both(init=False, portname = '/dev/ttyACM0' ):
+def set_both(init=False, portname = '/dev/ttyACM1' ):
   Tracer.init_serial(portname)
   if init:
     if not Tracer.init_comm_link():
@@ -141,10 +141,23 @@ def set_both(init=False, portname = '/dev/ttyACM0' ):
     print('ohms? ', end='')
     str_ohms = input()
     if str_ohms == 'quit': break
-    ohms = int(2*float(str_ohms)+0.5)
-    tr1.command(Tracer.OHMS, ohms)
-    tr2.command(Tracer.OHMS, ohms)
-    parallel = 1.0 / (1.0/tr1.ohms + 1.0/tr2.ohms)
-    print(tr1.ohms, tr2.ohms, parallel)
+    if str_ohms == 'end': break
+    if str_ohms == 'short':
+      tr1.command(Tracer.RELAYS, 1)
+      tr2.command(Tracer.RELAYS, 1)
+      print('Relays:', tr1.relay, tr2.relay)
+    elif str_ohms == 'open':
+      tr1.command(Tracer.RELAYS, 0)
+      tr2.command(Tracer.RELAYS, 0)
+      print('Relays:', tr1.relay, tr2.relay)
+    else:
+      try:
+        ohms = int(2*float(str_ohms)+0.5)
+        tr1.command(Tracer.OHMS, ohms)
+        tr2.command(Tracer.OHMS, ohms)
+        parallel = 1.0 / (1.0/tr1.ohms + 1.0/tr2.ohms)
+        print('Ohms:', tr1.ohms, tr2.ohms, 'Parallel:', parallel)
+      except:
+        print('invalid input:', str_ohms)
 
 #portmac = '/dev/cu.usbmodem147101'

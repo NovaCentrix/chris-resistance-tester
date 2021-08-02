@@ -118,7 +118,6 @@ class Tracer:
 
 def testme(init=False):
   Tracer.init_serial('/dev/ttyACM0')
-
   if init:
     if not Tracer.init_comm_link():
       print('failed to initialize comm link')
@@ -130,7 +129,22 @@ def testme(init=False):
   print(tr1.counts)
   return [tr1, tr2]
 
-  # 'X1=0\r\nX1=0 K1=open\r\n> '
-  # 'X1=1\r\nX1=1 K1=open\r\n> '
-  # 'X1=2\r\nX1=2 K1=open\r\n> '
-  # 'X1=3\r\nX1=3 K1=open\r\n> '
+def set_both(init=False, portname = '/dev/ttyACM0' ):
+  Tracer.init_serial(portname)
+  if init:
+    if not Tracer.init_comm_link():
+      print('failed to initialize comm link')
+      exit(0)
+  tr1 = Tracer(Tracer.TR1)
+  tr2 = Tracer(Tracer.TR2)
+  while(True):
+    print('ohms? ', end='')
+    str_ohms = input()
+    if str_ohms == 'quit': break
+    ohms = int(2*float(str_ohms)+0.5)
+    tr1.command(Tracer.OHMS, ohms)
+    tr2.command(Tracer.OHMS, ohms)
+    parallel = 1.0 / (1.0/tr1.ohms + 1.0/tr2.ohms)
+    print(tr1.ohms, tr2.ohms, parallel)
+
+#portmac = '/dev/cu.usbmodem147101'

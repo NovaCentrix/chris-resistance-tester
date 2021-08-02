@@ -69,9 +69,8 @@ class Results:
 class Logfile:
   def __init__(self):
     self.runs = []
-  def load(self, fname, ohms=None):
+  def load(self, fname):
     self.fname = fname
-    self.ohms = ohms
     with open(fname, 'r') as fin:
       self.cumul = Results( fname, 'cumulative' )
       for line in fin:
@@ -108,8 +107,13 @@ class Logfile:
             self.cumul.set_runtime( fields[1] )
             self.runs.append(results)
 
+class Logfile_ohms(Logfile):
+  def __init__(self, ohms):
+    self.ohms = ohms
+    super().__init__()
 
-class SerialTests:
+
+class Serial_ohmic_tests:
   def __init__(self):
     self.logdir = './logs/'
     self.logfiles = [ 
@@ -120,10 +124,9 @@ class SerialTests:
     for i in range( len(self.logfiles) ):
       lf = self.logfiles[i]
       ohms = self.tracer_ohms[i]
-      log = Logfile()
-      log.load(self.logdir+lf, ohms)
+      log = Logfile_ohms(ohms)
+      log.load(self.logdir+lf)
       self.logs.append( log )
-
 
   def plot_errors( self, ax ):
     # Cumul error bytes, error ppm
@@ -161,7 +164,85 @@ class SerialTests:
     ax.set_xlabel('TraceR Resistance, Ohms')
     ax.set_ylabel('Error, PPM', c='b')
 
-def main():
+class Logfile_wirings(Logfile):
+  def __init__(self, wires, label):
+    self.wires = wires
+    self.label = label
+
+    super().__init__()
+
+class Serial_wiring_tests:
+  def __init__(self):
+    self.logdir = './logs/'
+    self.logfiles = [ 
+        'log-shunt.txt',
+        'log-pyboard.txt', 
+        'log-pyboard-no-breadboard.txt',
+        'log-pyboard-no-breadboard-no-probes.txt',
+        'log-pyboard-twisted.txt', 
+        'log-underdog.txt' ]
+    self.wires = [ 1, 2, 3, 4, 5, 6 ]
+    self.labels = [ 'Tarte-Py', 'Pyboard', '-Breadboard', '-Probes',
+        '+Twisted', 'Goal???' ]
+    self.logs = []
+    for i in range( len(self.logfiles) ):
+      lf = self.logfiles[i]
+      print(i, lf)
+      wires = self.wires[i]
+      label = self.labels[i]
+      log = Logfile_wirings(wires, label)
+      log.load(self.logdir+lf)
+      self.logs.append( log )
+    # adjust last one (goal) from zero so we can see it on the plot
+    self.logs[-1].cumul.err_bytes = 5
+    self.logs[-1].cumul.error1e6 = 5
+
+
+  def plot_errors( self, ax ):
+    # Cumul error bytes, error ppm
+    x = []
+    y1 = []
+    y2 = []
+    xticks = []
+    for log in self.logs:
+      print(log.wires)
+      x.append( log.wires )
+      xticks.append( log.label )
+      y1.append( log.cumul.err_bytes )
+      y2.append( log.cumul.error1e6 )
+
+    print(x)
+    print(y1)
+    print(y2)
+
+    ax.set_title(f'Total #bytes ~6.2 MB per Wiring Arrangement')
+
+    major_ticks_x = np.arange(1,7,1)
+    #minor_ticks_x = np.arange(0,301,10)
+    major_ticks_y = np.arange(0,501,100)
+    minor_ticks_y = np.arange(0,501,25)
+
+    ax.set_xlim(0,7)
+    ax.set_ylim(-30,500)
+    #ax.plot(x,y2, '-o', c='b' )
+    ax.bar(x,y2, 0.25 )
+    ax.tick_params(axis='x', pad=-15)
+    ax.set_xticks(major_ticks_x)
+    ax.set_xticklabels(xticks)
+    #ax.set_xticks(minor_ticks_x, minor=True)
+    for i in range(len(x)-1):
+      ax.annotate( '{:.0f}'.format(y2[i]), xy=(x[i],y2[i]), ha='center', va='bottom')
+    ax.annotate( '~0', xy=(x[-1],y2[-1]), ha='center', va='bottom')
+    ax.set_yticks(major_ticks_y)
+    ax.set_yticks(minor_ticks_y, minor=True)
+    ax.tick_params(axis='y', labelcolor='b')
+    ax.grid(which='both')
+    ax.grid(which='minor', alpha=0.2)
+    ax.grid(which='major', alpha=0.5)
+    ax.set_xlabel('Wiring Configuration')
+    ax.set_ylabel('Error, PPM', c='b')
+
+def main_ohms():
   st = SerialTests()
 
   nprows=1
@@ -180,12 +261,35 @@ def main():
   fig.savefig('collate_plot.pdf')
   fig.savefig('collate_plot.png')
 
-if True:
-  log = Logfile()
-  #log.load( 'logfile.txt' )
-  log.load( 'logs/log-r011.txt' )
+
+def main_wires():
+  st = Serial_wiring_tests()
+
+  nprows=1
+  npcols=1
+  vsize = 6
+  hsize = 10
+  fig, ax = plt.subplots(nrows=nprows, ncols=npcols, figsize=(hsize,vsize))
+  title = 'Serial Link Configuration Experiments'
+  fig.canvas.manager.set_window_title('serial-link-test')
+  fig.suptitle(title, fontsize=20, fontweight='bold')
+
+  st.plot_errors( ax )
+
+  #fig.tight_layout(pad=1, w_pad = 1, h_pad = 1)
+  plt.show()
+  fig.savefig('collate_wiring_tests.pdf')
+  fig.savefig('collate_wiring_tests.png')
+
+#### if False:
+####   log = Logfile_ohms(22)
+####   #log.load( 'logfile.txt' )
+####   log.load( 'logs/log-r011.txt' )
 
 
-#if __name__ == "__main__":
-#  main()
+if __name__ == "__main__":
+  #main_ohms()
+  main_wires()
+
+
 

@@ -131,9 +131,12 @@ class Totals:
 def main():
 
   c = Corpus()
-  p = Port()
+  p = Port(portname='/dev/ttyUSB0')
   px = upacket.Packet()
   pr = upacket.Packet()
+  po = upacket.Packet() # reconstructed original packet
+  pa = upacket.Packet() # ack/nak packet
+  asc = upacket.Ascii()
   retry = 10
 
   totals = Totals() # tally of data and errors
@@ -152,23 +155,41 @@ def main():
       px.generate(line)
       nsent = p.send(px.packet)
       totals.all_accum( 1, int(px.size) )
-      #buff = p.recv(nsent)
       buff = p.recv(1024)
-      stat = pr.parse(buff)
-      obuff = upacket.Packet.unserialize(pr.payload)
-      stats = po.parse(obuff)
-      #print(stats)
-      match = px == po
-      if not match:
+      packets = buff.split(px.RSEP)
+      if len(packets) != 2:
         totals.err_accum( 1, int(px.size) )
-        print(px.size, nsent, len(buff), pr==px, file=logger.fp)
+        print('\nNumber received packets not two', file=logger.fp)
         print('  px:', px, file=logger.fp)
-        print('  pr:', pr, file=logger.fp)
-        print('  po:', po, file=logger.fp)
+        print('  rbuff:', asc.pretty(buff), file=logger.fp)
+        print('  len packets', len(packets), file=logger.fp)
+        print('  packets:', file=logger.fp)
+        for ppp in packets: 
+          print(ppp, file=logger.fp)
+        logger.fp.flush()
+      else:
+        rbuff = packets[0]
+        abuff = packets[1]
+        stat = pr.parse(rbuff)
+        obuff = upacket.Packet.unserialize(pr.payload)
+        stats = po.parse(obuff)
+        #print(stats)
+        pa.parse(abuff)
+        match = px == po
+        if not match:
+          totals.err_accum( 1, int(px.size) )
+          print(px.size, nsent, len(buff), match, file=logger.fp)
+          print('  px:', px, file=logger.fp)
+          print('  pr:', pr, file=logger.fp)
+          print('  po:', po, file=logger.fp)
+          print('  pa:', pa, file=logger.fp)
+          logger.fp.flush()
+
       if i % 1000 == 0:
         print(f'Run {run}: '
               f'{totals.run.all.pkts:12} {totals.run.all.bytes:12}   '
               f'{totals.run.err.pkts:12} {totals.run.err.bytes:12}')
+
     print(f'Run {run} Completed')
     prg_error = float(totals.prg.err.bytes) / float(totals.prg.all.bytes)
     prg_error100 = prg_error * 100.0
@@ -184,58 +205,59 @@ def main():
     print(f'Error percent...> {run_error100:12.2f} %\t{prg_error100:12.2f} %', file=logger.fp )
     print(f'Error ppm.......> {run_error1e6:12.2f} ppm\t{prg_error1e6:12.2f} ppm', file=logger.fp )
     logger.run_end()
+    logger.fp.flush()
 
   logger.close()
 
 
-def main2(npackets=None, vb=False):
-  """Main2: for manual ops, xmts, summary on screen, no logging"""
+  def main2(npackets=None, vb=False):
+    """Main2: for manual ops, xmts, summary on screen, no logging"""
 
-  c = Corpus()
-  p = Port()
-  px = upacket.Packet() # original packet to send
-  pr = upacket.Packet() # echoed back from tarte-py
-  po = upacket.Packet() # reconstructed original packet
-  pa = upacket.Packet() # ack/nak packet
-  retry = 10
-  asc = upacket.Ascii()
+    c = Corpus()
+    p = Port(portname='/dev/ttyUSB0')
+    px = upacket.Packet() # original packet to send
+    pr = upacket.Packet() # echoed back from tarte-py
+    po = upacket.Packet() # reconstructed original packet
+    pa = upacket.Packet() # ack/nak packet
+    retry = 10
+    asc = upacket.Ascii()
 
-  totals = Totals() # tally of data and errors
+    totals = Totals() # tally of data and errors
 
-  looping = True
-  while looping:
-    for i,line in enumerate(c.source):
-      time.sleep(0.030)
-      if npackets is not None:
-        if i >= npackets:
-          looping=False
-          break
-      px.generate(line)
-      nsent = p.send(px.packet)
-      totals.all_accum( 1, int(px.size) )
-      #buff = p.recv(nsent)
-      # Get the reply
-      buff = p.recv(2048)
-      packets = buff.split(px.RSEP)
-      if len(packets) != 2:
-        print('\nNumber received packets not two')
-        print('  Sent:')
-        print('  ', px)
-        print('  Received buff:')
-        print('  ', asc.pretty(buff))
-        print('  len packets', len(packets))
-        print('  packets:')
-        for ppp in packets: 
-          print(ppp)
-        exit()
-      rbuff = packets[0]
-      abuff = packets[1]
-      stat = pr.parse(rbuff)
-      obuff = upacket.Packet.unserialize(pr.payload)
-      stats = po.parse(obuff)
-      #print(stats)
-      pa.parse(abuff)
-      match = px == po
+    looping = True
+    while looping:
+      for i,line in enumerate(c.source):
+        time.sleep(0.030)
+        if npackets is not None:
+          if i >= npackets:
+            looping=False
+            break
+        px.generate(line)
+        nsent = p.send(px.packet)
+        totals.all_accum( 1, int(px.size) )
+        #buff = p.recv(nsent)
+        # Get the reply
+        buff = p.recv(2048)
+        packets = buff.split(px.RSEP)
+        if len(packets) != 2:
+          print('\nNumber received packets not two')
+          print('  Sent:')
+          print('  ', px)
+          print('  Received buff:')
+          print('  ', asc.pretty(buff))
+          print('  len packets', len(packets))
+          print('  packets:')
+          for ppp in packets: 
+            print(ppp)
+          exit()
+        rbuff = packets[0]
+        abuff = packets[1]
+        stat = pr.parse(rbuff)
+        obuff = upacket.Packet.unserialize(pr.payload)
+        stats = po.parse(obuff)
+        #print(stats)
+        pa.parse(abuff)
+        match = px == po
       if vb:
         print('-----')
         print('  px:', px)

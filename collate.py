@@ -6,6 +6,7 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import datetime as dt
 import csv
 
 
@@ -28,16 +29,29 @@ class Results:
     self.err_bytes = err_bytes
     self.err100 = err100
     self.err1e6 = err1e6
+  def set_runtime(self, runtime):
+    # runtime is string form of datetime.timedelta
+    self.runtime = runtime
+    dtime = dt.datetime.strptime( '1900-1-1 '+runtime, 
+                                  "%Y-%m-%d %H:%M:%S.%f" )
+    self.dtime = dtime - dt.datetime(1900,1,1)
+    self.run_seconds = self.dtime.total_seconds()
+    #  packets and bytes per second
+    self.packets_psec = self.tot_pkts / self.run_seconds
+    self.bytes_psec = self.tot_bytes / self.run_seconds
   def __str__(self):
     return f'\n'\
            f'File: {self.fname}, Run: {self.run}\n'\
-           f'Total packets...> {self.tot_pkts:12}\n'\
-           f'Total bytes.....> {self.tot_bytes:12}\n'\
-           f'Error packets...> {self.err_pkts:12}\n'\
-           f'Error bytes.....> {self.err_bytes:12}\n'\
-           f'Error percent...> {self.error100:12.2f} %\n'\
-           f'Error ppm.......> {self.error1e6:12.2f} ppm\n'\
-           f'Runtime.........> {self.runtime}'
+           f'Total packets...> {self.tot_pkts:18}\n'\
+           f'Total bytes.....> {self.tot_bytes:18}\n'\
+           f'Error packets...> {self.err_pkts:18}\n'\
+           f'Error bytes.....> {self.err_bytes:18}\n'\
+           f'Error percent...> {self.error100:18.2f} %\n'\
+           f'Error ppm.......> {self.error1e6:18.2f} ppm\n'\
+           f'Runtime.........> {self.runtime:>18s} h:m:s.usec\n'\
+           f'Runtime (sec)...> {self.run_seconds:18.3f} sec\n'\
+           f'Packets/sec.....> {self.packets_psec:18.3f} pkt/sec\n'\
+           f'Bytes/sec.......> {self.bytes_psec:18.3f} B/sec'
   def __repr__(self):
     return f'Run: {self.fname}:{self.run}'
     # Format of log file summaries to grab, 
@@ -55,13 +69,16 @@ class Results:
 class Logfile:
   def __init__(self):
     self.runs = []
-  def load(self, fname, ohms):
+  def load(self, fname, ohms=None):
     self.fname = fname
     self.ohms = ohms
     with open(fname, 'r') as fin:
       self.cumul = Results( fname, 'cumulative' )
       for line in fin:
+        if line[0] == '#': continue
+        if len(line[0]) == 0: continue
         fields = line.split()
+        if len(fields) < 2: continue
         if fields[0] == 'Run' and fields[1] == '#':
           runnum = fields[2]
           results = Results( fname, runnum )
@@ -87,8 +104,8 @@ class Logfile:
             results.error1e6 = float(fields[2])
             self.cumul.error1e6 = float(fields[4])
         if fields[0] == 'runtime:':
-            results.runtime = fields[1]
-            self.cumul.runtime = fields[1]
+            results.set_runtime( fields[1] )
+            self.cumul.set_runtime( fields[1] )
             self.runs.append(results)
 
 
@@ -163,6 +180,12 @@ def main():
   fig.savefig('collate_plot.pdf')
   fig.savefig('collate_plot.png')
 
-if __name__ == "__main__":
-  main()
+if True:
+  log = Logfile()
+  #log.load( 'logfile.txt' )
+  log.load( 'logs/log-r011.txt' )
+
+
+#if __name__ == "__main__":
+#  main()
 

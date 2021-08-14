@@ -10,7 +10,7 @@ import rigol1000z
 def main(argv):
 
   print('=== Initializing Rigol DS1054Z Oscilloscope ===')
-  myscope = 'TCPIP0::192.168.1.220::INSTR'
+  myscope = 'TCPIP0::192.168.1.223::INSTR'
   rm = visa.ResourceManager()
   resource = rm.open_resource(myscope)
   scope = rigol1000z.Rigol1000z(resource)

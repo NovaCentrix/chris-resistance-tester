@@ -129,7 +129,7 @@ def testme(init=False):
   print(tr1.counts)
   return [tr1, tr2]
 
-def set_both(init=False, portname = '/dev/ttyACM1' ):
+def set_both(init=False, portname = '/dev/ttyACM0' ):
   Tracer.init_serial(portname)
   if init:
     if not Tracer.init_comm_link():
